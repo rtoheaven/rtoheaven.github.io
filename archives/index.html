@@ -81,7 +81,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2014/10/31/hello-world/">Hello World</a>
+      <a class="article-title" href="/2014/10/31/hello-world/">windows常见反调试</a>
     </h1>
   
 
@@ -89,24 +89,12 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Welcome to <a href="http://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="http://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="http://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">trobuleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick_Start">Quick Start</h2>
-<h3 id="Create_a_new_post">Create a new post</h3>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
+        <p>Welcome to <a href="http://rtoheaven.github.io/" target="_blank" rel="external">rtoheaven</a>! </p>
+<h2 id="1-PEB">1.<strong>PEB</strong></h2>
+<p>0×002    BeingDebugged<br>正常运行：0×0        调试态：0×1<br>0x00c    Ldr：指向堆内存区地址<br>调试状态堆内存全部填充为0xFEEEFEEE<br>0×018    ProcessHeap：指向HEAP结构体<br>0x00c    Flags    正常运行：0×2    调试态：0×50000062<br>0×010    ForceFlags    正常运行：0×2    调试态：0×40000060<br>0×068    NtGlobalFlag<br>正常运行：0×0        调试态：0×70<br>代码示例：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div></pre></td><td class="code"><pre><div class="line">*<span class="preprocessor">#include </span></div><div class="line"><span class="preprocessor">#include</span></div><div class="line"><span class="keyword">extern</span> “C” BOOL WINAPI IsDebuggerPresent(VOID);</div><div class="line"><span class="keyword">int</span> main()</div><div class="line">{</div><div class="line">FARPROC pProc = NULL;</div><div class="line">LPBYTE pTeb = NULL;</div><div class="line">LPBYTE pPeb = NULL;</div><div class="line">LPBYTE pLdr = NULL;</div><div class="line">LPBYTE pHeap = NULL;</div><div class="line">DWORD dst[<span class="number">4</span>] = {<span class="number">0xEEFEEEFE</span>, <span class="number">0xEEFEEEFE</span>, <span class="number">0xEEFEEEFE</span>, <span class="number">0xEEFEEEFE</span>};</div><div class="line"><span class="comment">//BeingDebugged</span></div><div class="line"><span class="built_in">printf</span>(“BeingDebugged———\n”);</div><div class="line"><span class="keyword">if</span> (IsDebuggerPresent())</div><div class="line">{</div><div class="line"><span class="built_in">printf</span>(“Debugger Detected!\n”);</div><div class="line">}</div><div class="line"><span class="keyword">else</span></div><div class="line">{</div><div class="line"><span class="built_in">printf</span>(“No Debugger!\n”);</div><div class="line">}</div><div class="line"><span class="comment">//Ldr</span></div><div class="line"><span class="built_in">printf</span>(“\nLdr———\n”);</div><div class="line">pProc = GetProcAddress(GetModuleHandle(“ntdll.dll”), “NtCurrentTeb”);</div><div class="line">pTeb = (LPBYTE)(*pProc)();</div><div class="line">pPeb = (LPBYTE)*(LPDWORD)(pTeb + <span class="number">0</span>×<span class="number">30</span>);</div><div class="line">pLdr = (LPBYTE)*(LPDWORD)(pPeb + <span class="number">0xc</span>);</div><div class="line">__try</div><div class="line">{</div><div class="line"><span class="keyword">while</span> (<span class="number">1</span>)</div><div class="line">{</div><div class="line"><span class="keyword">if</span> (!<span class="built_in">memcmp</span>(dst, pLdr, <span class="keyword">sizeof</span>(dst)))</div><div class="line">{</div><div class="line"><span class="built_in">printf</span>(“Debugger Detected!\n”);</div><div class="line"><span class="keyword">break</span>;</div><div class="line">}</div><div class="line">pLdr++;</div><div class="line">}</div><div class="line">}</div><div class="line">__except (EXCEPTION_EXECUTE_HANDLER)</div><div class="line">{</div><div class="line"><span class="built_in">printf</span>(“No Debugger!\n”);</div><div class="line">}</div><div class="line"><span class="comment">//ProcessHeap</span></div><div class="line"><span class="built_in">printf</span>(“\nProcessHeap———\n”);</div><div class="line">pHeap = (LPBYTE)*(LPDWORD)(pPeb + <span class="number">0</span>×<span class="number">18</span>);</div><div class="line"><span class="keyword">if</span> (*(LPDWORD)(pHeap + <span class="number">0x0c</span>) == <span class="number">0</span>×<span class="number">50000062</span> || *(LPDWORD)(pHeap + <span class="number">0</span>×<span class="number">10</span>) == <span class="number">0</span>×<span class="number">40000060</span>)</div><div class="line">{</div><div class="line"><span class="built_in">printf</span>(“Debugger Detected!\n”);</div><div class="line">}</div><div class="line"><span class="keyword">else</span></div><div class="line">{</div><div class="line"><span class="built_in">printf</span>(“No Debugger!\n”);</div><div class="line">}</div><div class="line"><span class="comment">//NtGlobalFlag</span></div><div class="line"><span class="built_in">printf</span>(“\nNtGlobalFlag———\n”);</div><div class="line"><span class="keyword">if</span> (*(LPDWORD)(pPeb + <span class="number">0</span>×<span class="number">68</span>) == <span class="number">0</span>×<span class="number">70</span>)</div><div class="line">{</div><div class="line"><span class="built_in">printf</span>(“Debugger Detected!\n”);</div><div class="line">}</div><div class="line"><span class="keyword">else</span></div><div class="line">{</div><div class="line"><span class="built_in">printf</span>(“No Debugger!\n”);</div><div class="line">}</div><div class="line"><span class="built_in">printf</span>(“\n\n”);</div><div class="line"><span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">}*</div></pre></td></tr></table></figure>
 
-<p>More info: <a href="http://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run_server">Run server</h3>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-
-<p>More info: <a href="http://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate_static_files">Generate static files</h3>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-
-<p>More info: <a href="http://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy_to_remote_sites">Deploy to remote sites</h3>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-
-<p>More info: <a href="http://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
+<p>More info: <a href="http://baidu.com" target="_blank" rel="external">Writing</a></p>
 
       
     </div>
@@ -152,7 +140,7 @@
       <ul>
         
           <li>
-            <a href="/2014/10/31/hello-world/">Hello World</a>
+            <a href="/2014/10/31/hello-world/">windows常见反调试</a>
           </li>
         
       </ul>
