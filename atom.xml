@@ -4,7 +4,7 @@
   <subtitle><![CDATA[Walk steps step by step]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://yoursite.com/"/>
-  <updated>2014-11-05T03:41:16.079Z</updated>
+  <updated>2014-11-05T03:43:16.855Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,11 +15,11 @@
   <generator uri="http://zespia.tw/hexo/">Hexo</generator>
   
   <entry>
-    <title><![CDATA[windows常见反调试]]></title>
+    <title><![CDATA[C语言操作SQL]]></title>
     <link href="http://yoursite.com/2014/11/05/C%E8%AF%AD%E8%A8%80%E6%93%8D%E4%BD%9CSQLITE3%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
     <id>http://yoursite.com/2014/11/05/C语言操作SQLITE3数据库/</id>
     <published>2014-11-05T03:31:56.000Z</published>
-    <updated>2014-11-05T03:41:08.000Z</updated>
+    <updated>2014-11-05T03:43:09.000Z</updated>
     <content type="html"><![CDATA[<h2 id="一、版本">一、版本</h2>
 <p>从 www.sqlite.org 网站可下载到最新的 sqlite 代码和编译版本。我写此文章时，最新代码是 3.3.17 版本。<br>很久没有去下载 sqlite 新代码，因此也不知道 sqlite 变化这么大。以前很多文件，现在全部合并成一个 sqlite3.c 文件。<br>如果单独用此文件，是挺好的，省去拷贝一堆文件还担心有没有遗漏。但是也带来一个问题：此文件太大，快接近7万行代码，VC开它整个机器都慢下来 了。<br>如果不需要改它代码，也就不需要打开 sqlite3.c 文件，机器不会慢。但是，下面我要写通过修改 sqlite 代码完成加密功能，那时候就比较痛苦了。</p>
 <h2 id="二、基本编译">二、基本编译</h2>
