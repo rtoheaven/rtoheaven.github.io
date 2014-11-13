@@ -50,74 +50,21 @@
 <h2 class="archive-title category">安全技术</h2>
 
 
-  
-    <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2014-10-31T07:17:40.000Z"><a href="/2014/10/31/windows常见反调试/">10月 31 2014</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2014/10/31/windows常见反调试/">windows常见反调试</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <h2 id="1-_PEB">1. <strong>PEB</strong></h2>
-<p>0×002    BeingDebugged<br>正常运行：0×0        调试态：0×1<br>0x00c    Ldr：指向堆内存区地址<br>调试状态堆内存全部填充为0xFEEEFEEE<br>0×018    ProcessHeap：指向HEAP结构体<br>0x00c    Flags    正常运行：0×2    调试态：0×50000062<br>0×010    ForceFlags    正常运行：0×2    调试态：0×40000060<br>0×068    NtGlobalFlag<br>正常运行：0×0        调试态：0×70<br>代码示例：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div></pre></td><td class="code"><pre><div class="line"><span class="preprocessor">#include </span></div><div class="line"><span class="preprocessor">#include</span></div><div class="line"><span class="keyword">extern</span> “C” BOOL WINAPI IsDebuggerPresent(VOID);</div><div class="line"><span class="keyword">int</span> main()</div><div class="line">{</div><div class="line">FARPROC pProc = NULL;</div><div class="line">LPBYTE pTeb = NULL;</div><div class="line">LPBYTE pPeb = NULL;</div><div class="line">LPBYTE pLdr = NULL;</div><div class="line">LPBYTE pHeap = NULL;</div><div class="line">DWORD dst[<span class="number">4</span>] = {<span class="number">0xEEFEEEFE</span>, <span class="number">0xEEFEEEFE</span>, <span class="number">0xEEFEEEFE</span>, <span class="number">0xEEFEEEFE</span>};</div><div class="line"><span class="comment">//BeingDebugged</span></div><div class="line"><span class="built_in">printf</span>(“BeingDebugged———\n”);</div><div class="line"><span class="keyword">if</span> (IsDebuggerPresent())</div><div class="line">{</div><div class="line"><span class="built_in">printf</span>(“Debugger Detected!\n”);</div><div class="line">}</div><div class="line"><span class="keyword">else</span></div><div class="line">{</div><div class="line"><span class="built_in">printf</span>(“No Debugger!\n”);</div><div class="line">}</div><div class="line"><span class="comment">//Ldr</span></div><div class="line"><span class="built_in">printf</span>(“\nLdr———\n”);</div><div class="line">pProc = GetProcAddress(GetModuleHandle(“ntdll.dll”), “NtCurrentTeb”);</div><div class="line">pTeb = (LPBYTE)(*pProc)();</div><div class="line">pPeb = (LPBYTE)*(LPDWORD)(pTeb + <span class="number">0</span>×<span class="number">30</span>);</div><div class="line">pLdr = (LPBYTE)*(LPDWORD)(pPeb + <span class="number">0xc</span>);</div><div class="line">__try</div><div class="line">{</div><div class="line"><span class="keyword">while</span> (<span class="number">1</span>)</div><div class="line">{</div><div class="line"><span class="keyword">if</span> (!<span class="built_in">memcmp</span>(dst, pLdr, <span class="keyword">sizeof</span>(dst)))</div><div class="line">{</div><div class="line"><span class="built_in">printf</span>(“Debugger Detected!\n”);</div><div class="line"><span class="keyword">break</span>;</div><div class="line">}</div><div class="line">pLdr++;</div><div class="line">}</div><div class="line">}</div><div class="line">__except (EXCEPTION_EXECUTE_HANDLER)</div><div class="line">{</div><div class="line"><span class="built_in">printf</span>(“No Debugger!\n”);</div><div class="line">}</div><div class="line"><span class="comment">//ProcessHeap</span></div><div class="line"><span class="built_in">printf</span>(“\nProcessHeap———\n”);</div><div class="line">pHeap = (LPBYTE)*(LPDWORD)(pPeb + <span class="number">0</span>×<span class="number">18</span>);</div><div class="line"><span class="keyword">if</span> (*(LPDWORD)(pHeap + <span class="number">0x0c</span>) == <span class="number">0</span>×<span class="number">50000062</span> || *(LPDWORD)(pHeap + <span class="number">0</span>×<span class="number">10</span>) == <span class="number">0</span>×<span class="number">40000060</span>)</div><div class="line">{</div><div class="line"><span class="built_in">printf</span>(“Debugger Detected!\n”);</div><div class="line">}</div><div class="line"><span class="keyword">else</span></div><div class="line">{</div><div class="line"><span class="built_in">printf</span>(“No Debugger!\n”);</div><div class="line">}</div><div class="line"><span class="comment">//NtGlobalFlag</span></div><div class="line"><span class="built_in">printf</span>(“\nNtGlobalFlag———\n”);</div><div class="line"><span class="keyword">if</span> (*(LPDWORD)(pPeb + <span class="number">0</span>×<span class="number">68</span>) == <span class="number">0</span>×<span class="number">70</span>)</div><div class="line">{</div><div class="line"><span class="built_in">printf</span>(“Debugger Detected!\n”);</div><div class="line">}</div><div class="line"><span class="keyword">else</span></div><div class="line">{</div><div class="line"><span class="built_in">printf</span>(“No Debugger!\n”);</div><div class="line">}</div><div class="line"><span class="built_in">printf</span>(“\n\n”);</div><div class="line"><span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">}</div></pre></td></tr></table></figure>
-
-<h2 id="2-_NtQueryInformationProcess">2. <strong>NtQueryInformationProcess</strong></h2>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">NTSYSAPI NTSTATUS NTAPI NtQueryInformationProcess (</div><div class="line">HANDLE     ProcessHandle, 　　　　　　<span class="comment">// 进程句柄</span></div><div class="line">PROCESSINFOCLASS 　　InformationClass, <span class="comment">// 信息类型</span></div><div class="line">PVOID 　　　　　ProcessInformation, 　　　 <span class="comment">// 缓冲指针</span></div><div class="line">ULONG 　　　　ProcessInformationLength, <span class="comment">// 以字节为单位的缓冲大小</span></div><div class="line">PULONG 　　　ReturnLength OPTIONAL     <span class="comment">// 写入缓冲的字节数</span></div><div class="line">);</div></pre></td></tr></table></figure>
-
-<p>第二个枚举参数中的三个域可以用来做反调试<br>ProcessDebugPort = 0×7<br>正常运行：0×0        调试态：0xFFFFFFFF<br>ProcessDebugObjectHandle = 0x1E<br>正常运行：NULL        调试态：调试对象句柄<br>ProcessDebugFlags = 0x1F<br>正常运行：0×1        调试态：0×0<br>代码示例：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line">proc = (NTQUERYINFORMATIONPROCESS)GetProcAddress(GetModuleHandle(“ntdll.dll”), “NtQueryInformationProcess”);</div><div class="line"><span class="comment">//ProcessDebugPort = 0×7</span></div><div class="line">(*proc)(GetCurrentProcess(), ProcessDebugPort, &dwRet, <span class="keyword">sizeof</span>(dwRet), NULL);</div><div class="line"><span class="keyword">if</span> (dwRet != <span class="number">0</span>)</div><div class="line">{</div><div class="line"><span class="built_in">printf</span>(“Debugger Detected!\n”);</div><div class="line">}</div><div class="line"><span class="keyword">else</span></div><div class="line">{</div><div class="line"><span class="built_in">printf</span>(“No Debugger!\n”);</div><div class="line">}</div><div class="line"><span class="comment">//ProcessDebugObjectHandle = 0x1e</span></div><div class="line">(*proc)(GetCurrentProcess(), ProcessDebugObjectHandle, &dwRet, <span class="keyword">sizeof</span>(dwRet), NULL);</div><div class="line"><span class="keyword">if</span> (dwRet != <span class="number">0</span>)</div><div class="line">{</div><div class="line"><span class="built_in">printf</span>(“Debugger Detected!\n”);</div><div class="line">}</div><div class="line"><span class="keyword">else</span></div><div class="line">{</div><div class="line"><span class="built_in">printf</span>(“No Debugger!\n”);</div><div class="line">}</div><div class="line"><span class="comment">//ProcessDebugFlags = 0x1f</span></div><div class="line">(*proc)(GetCurrentProcess(), ProcessDebugFlags, &dwRet, <span class="keyword">sizeof</span>(dwRet), NULL);</div><div class="line"><span class="keyword">if</span> (dwRet == <span class="number">0</span>)</div><div class="line">{</div><div class="line"><span class="built_in">printf</span>(“Debugger Detected!=%d\n”, dwRet);</div><div class="line">}</div><div class="line"><span class="keyword">else</span></div><div class="line">{</div><div class="line"><span class="built_in">printf</span>(“No Debugger!\n”);</div><div class="line">}</div></pre></td></tr></table></figure>
-
-<h2 id="3-_NtQueryObject">3. <strong>NtQueryObject</strong></h2>
-<p>当调试器调试一个进程时，会创建一个调试类型的内核对象，检测系统中是否有调试对象即可判断是否有进程正在被调试。<br>获取内核对象信息链表，遍历链表中对象类型，如果有DebugObject类型对象则说明有程序正在被调试。</p>
-<h2 id="4-_ZwSetInformationThread">4. <strong>ZwSetInformationThread</strong></h2>
-<p>隐藏线程，使调试器无法接收调试事件。<br>第二个参数是个枚举类型的，这个域可以用来反调试ThreadHideFromDebugger：0×11<br>代码示例：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">int</span> main()</div><div class="line">{</div><div class="line">MYZWSETINFOMATIONTHREAD proc = NULL;</div><div class="line">proc = (MYZWSETINFOMATIONTHREAD)GetProcAddress(GetModuleHandle(“ntdll.dll”), “ZwSetInformationThread”);</div><div class="line">proc(GetCurrentThread(), ThreadHideFromDebugger, NULL, <span class="number">0</span>);</div><div class="line"><span class="built_in">printf</span>(“done\n”);</div><div class="line">system(“pause”);</div><div class="line"><span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">}</div></pre></td></tr></table></figure>
-
-<h2 id="5-_DebugActiveProcessStop">5. <strong>DebugActiveProcessStop</strong></h2>
-<p>这个函数可以把调试器与被调试进程的调试关系解除，这样调试器也就接收不到被调试进程的调试事件了。</p>
-<h2 id="6-_FindWindow">6. <strong>FindWindow</strong></h2>
-<p>通过这个函数获取调试器窗口的句柄，如果调试器窗口存在就会返回一个非零的值。</p>
-<h2 id="7-_TLS回调">7. <strong>TLS回调</strong></h2>
-<p>Tls回调函数会优先于EP代码执行，所以可以在函数中写入检测代码，在进程还没有开始运行之前就可以知道是否正在被调试。TLS其实不算反调试技术，只有在结合了其他反调试技术才会有反调试的效果。<br>代码示例:</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="preprocessor">#include </span></div><div class="line"><span class="preprocessor">#include</span></div><div class="line"><span class="keyword">void</span> NTAPI Tls_Callback(PVOID h, DWORD dwReason, PVOID pv)</div><div class="line">{</div><div class="line"><span class="keyword">if</span>( DLL_PROCESS_ATTACH == dwReason )</div><div class="line">{</div><div class="line"><span class="keyword">if</span> (IsDebuggerPresent())</div><div class="line">{</div><div class="line"><span class="built_in">printf</span>(“Debugger Detected!\n”);</div><div class="line">}</div><div class="line">}</div><div class="line">}</div><div class="line"><span class="preprocessor">#<span class="keyword">pragma</span> comment(linker, “/INCLUDE:__tls_used”)</span></div><div class="line"><span class="preprocessor">#<span class="keyword">pragma</span> data_seg(“.CRT$XLX”)</span></div><div class="line">PIMAGE_TLS_CALLBACK pTLS_CALLBACKs[] = { Tls_Callback, <span class="number">0</span> };</div><div class="line"><span class="preprocessor">#<span class="keyword">pragma</span> data_seg()</span></div><div class="line"><span class="keyword">int</span> main()</div><div class="line">{</div><div class="line"><span class="built_in">printf</span>(“tls callback anti-debug————\n\n”);</div><div class="line">system(“pause”);</div><div class="line"><span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">}</div></pre></td></tr></table></figure>
-
-<h2 id="8-_SEH">8. <strong>SEH</strong></h2>
-<p>1）<br>a.安装seh处理函数<br>b.故意触发一个异常，跳转到刚注册的seh处理函数中<br>c.在seh处理函数中写入检测代码<br>2）<br>a.SetUnhandledExceptionFilter更改默认顶层异常处理函数<br>b.触发异常，跳转到更改过的顶层异常处理函数中<br>c. 在seh处理函数中写入检测代码</p>
-<h2 id="9-_进程快照">9. <strong>进程快照</strong></h2>
-<p>CreateToolhelp32Snapshot、Process32First、Process32Next<br>这几个函数可以用来建立一个系统正在运行的进程快照，然后遍历进程快照查找是否有常见的调试器进程正在运行也可用作反调试。</p>
-<p>本文章转至[三叶草]（<a href="http://syclover.sinaapp.com/?cat=4）" target="_blank" rel="external">http://syclover.sinaapp.com/?cat=4）</a></p>
-
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
+  <div class="archive">
+    
+      <article class="post">
+        <div class="post-content">
+          <header>
+            <div class="icon"></div>
+            <time datetime="2014-10-31T07:17:40.000Z"><a href="/2014/10/31/windows常见反调试/">10月 31 2014</a></time>
+            
+              <h1 class="title"><a href="/2014/10/31/windows常见反调试/">windows常见反调试</a></h1>
+            
+          </header>
+        </div>
+      </article>
+    
   </div>
-</article>
-
-
-
-  
-
-  <nav id="pagination">
-  
-  
-  <div class="clearfix"></div>
-</nav>
 </div></div>
     <aside id="sidebar" class="alignright">
   <div class="search">
@@ -137,8 +84,6 @@
     <li><a href="/categories/基础编程/">基础编程</a><small>1</small></li>
   
     <li><a href="/categories/安全技术/">安全技术</a><small>1</small></li>
-  
-    <li><a href="/categories/随谈/">随谈</a><small>0</small></li>
   
   </ul>
 </div>
