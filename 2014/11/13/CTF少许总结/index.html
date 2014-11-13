@@ -68,7 +68,7 @@
 <h2 id="Hctf逆向第2题（善于抓住题目信息或者说题目暗示）">Hctf逆向第2题（<strong>善于抓住题目信息或者说题目暗示</strong>）</h2>
 <p>107.189.158.112/e81cbc49ae92b00d3b55430f21cbe2fe/babyCrack2.zip<br>这个题开始拿起用peid查了壳，发现没有壳。用OD跟了下，逻辑感觉不难，调理也很清楚，开始来了就一致在检测这个文件是不是PE文件，检测完了再单步走一下，就可以try again!!,<br>the key is what you  agin这些字符串，比且在开始也压入了一个字符串”idug|3<code>5ut</code>CCbz<code>DusnF</code>34~”，后面也会有跟这个字符串比较的函数。<br><img src="/img/46C23DCA47364DDE9CD09FA42A4E4DD2.png" alt=""><br>以为感觉就对了，但是后面在调试的时候，感觉无论输入啥子，都有点不对。<br>后面同伴提交了那串字符串，结果是对的。但是后面官网说了，那个题目答案有误。<br>正确的答案应该是每个字符串减1.<br>为什么呢。<br>idug每位的ascii减一就是hctf.在结合题目，.比赛中部分flag形式为hctf{xxxxxx}，部分flag不带hctf话括号，提交所见flag即可。<br>就可以得到答案了。我也看了writeup知道的。<br>其实这个题目考察的主要就是一个观察力。逆向能力要求也不是很高。</p>
 <h2 id="hctf_apk的一个题目（NomalFile）(需要的也是善于观察)">hctf apk的一个题目（NomalFile）(<strong>需要的也是善于观察</strong>)</h2>
-<p>这个题目用apk改之理反汇编后，算法也明确。</p>
+<p>这个题目本身是图片，图片里面嵌入了又一个png图片，去掉png的内容，就是一个APK，这里就不说了。用apk改之理反汇编后，算法也明确。</p>
 <p><img src="/img/C(UEF46_7VYUAR}D345MCXW.png" alt=""><br>flag就是字符数组（16位），算的时候取它的 0 4  8 12 1  ‘+’‘ +’ 13位跟其他一组数做xor,最后跟这个字符数组的第6 10 14 3 ‘+’ 11  “+”作比较。还有些限制条件，15位与13位相等这些，这里就不说了。<br>通过这些条件就可以确定数组的某三位了。<br>还有一个就是接受用户输入的时候，不够16的位，它会去读取String str1 = Environment.getExternalStorageDirectory().getPath() + “/brand.txt”;的第一行，凑够16位数字。<br>开始同伴一直在找这个文件，无果。<br>后面就想，既然接受用户输入，那么答案就应该可以不相同的。自己就凑了一个答案，感觉符合条件。以为对了，提交的时候错误！！！<br>导致最后也没有成功提交。<br>看了writeup后，心里各种 草泥马，在strings..xml里面有个字符串，401！n++p;这个就对应最初取的那几位。</p>
 <p><img src="/img/A32F0A1097F0422386C9285B92FF4796.png" alt=""><br>这样，就可以确定flag.<br>主要是没有经验，也没有敏锐的观察力。唉，伤不起。</p>
 <h2 id="hctf_apk的第2题，">hctf apk的第2题，</h2>
