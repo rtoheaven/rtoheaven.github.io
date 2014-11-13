@@ -63,7 +63,7 @@
     <div class="entry">
       
         <h2 id="一、版本">一、版本</h2>
-<p>从 www.sqlite.org 网站可下载到最新的 sqlite 代码和编译版本。我写此文章时，最新代码是 3.3.17 版本。<br>很久没有去下载 sqlite 新代码，因此也不知道 sqlite 变化这么大。以前很多文件，现在全部合并成一个 sqlite3.c 文件。<br>如果单独用此文件，是挺好的，省去拷贝一堆文件还担心有没有遗漏。但是也带来一个问题：此文件太大，快接近7万行代码，VC开它整个机器都慢下来 了。<br>如果不需要改它代码，也就不需要打开 sqlite3.c 文件，机器不会慢。但是，下面我要写通过修改 sqlite 代码完成加密功能，那时候就比较痛苦了。</p>
+<p>从 www.sqlite.org 网站可下载到最新的 sqlite 代码和编译版本。写此文章时，最新代码是 3.3.17 版本。<br>很久没有去下载 sqlite 新代码，因此也不知道 sqlite 变化这么大。以前很多文件，现在全部合并成一个 sqlite3.c 文件。<br>如果单独用此文件，是挺好的，省去拷贝一堆文件还担心有没有遗漏。但是也带来一个问题：此文件太大，快接近7万行代码，VC开它整个机器都慢下来 了。<br>如果不需要改它代码，也就不需要打开 sqlite3.c 文件，机器不会慢。但是，下面我要写通过修改 sqlite 代码完成加密功能，那时候就比较痛苦了。<a id="more"></a></p>
 <h2 id="二、基本编译">二、基本编译</h2>
 <p>这个不想多说了，在 VC 里新建 dos 控制台空白工程，把 sqlite3.c 和 sqlite3.h 添加到工程，再新建一个 main.cpp 文件。在里面写:</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">extern</span> “C”</div><div class="line">{</div><div class="line"><span class="preprocessor">#include “./sqlite3.h”</span></div><div class="line">};</div><div class="line"><span class="keyword">int</span> main( <span class="keyword">int</span> , <span class="keyword">char</span>** )</div><div class="line">{</div><div class="line"><span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">}</div></pre></td></tr></table></figure>

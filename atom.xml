@@ -4,7 +4,7 @@
   <subtitle><![CDATA[Walk steps step by step]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://yoursite.com/"/>
-  <updated>2014-11-13T09:11:48.357Z</updated>
+  <updated>2014-11-13T09:25:54.416Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -19,8 +19,8 @@
     <link href="http://yoursite.com/2014/11/13/CTF%E5%B0%91%E8%AE%B8%E6%80%BB%E7%BB%93/"/>
     <id>http://yoursite.com/2014/11/13/CTF少许总结/</id>
     <published>2014-11-13T08:29:08.000Z</published>
-    <updated>2014-11-13T09:02:51.000Z</updated>
-    <content type="html"><![CDATA[<p>其实参加的比较少，很多也不懂，总结了一点点。<br>其实Crack类的题目，技巧很重要，阅读题目能力很关键，需要善于结合周边信息，善于用各种工具，善于多方位思考问题，找准关键地方，迅速定位。<br>下面举例说明。</p>
+    <updated>2014-11-13T09:24:01.000Z</updated>
+    <content type="html"><![CDATA[<p>其实参加的比较少，很多也不懂，总结了一点点。<br>其实Crack类的题目，技巧很重要，阅读题目能力很关键，需要善于结合周边信息，善于用各种工具，善于多方位思考问题，找准关键地方，迅速定位。<br>下面举例说明。<a id="more"></a></p>
 <h2 id="Hctf_逆向第1题（善于使用工具）。">Hctf 逆向第1题（<strong>善于使用工具</strong>）。</h2>
 <p>107.189.158.112/d55757a7ccf958399789e18e1d8199de/babyCrack.zip<br>这个题目如果直接去调试，还是比较麻烦的，因为没有提示字符串，函数也不明确，但是如果用PEID先查壳，就能快速知道是,NET程序，<br>就可以用ILSpy或者.net reflector工具反编译出源码，<br><img src="/img/4101483FF0DB41C38DF5B24A13EA8596.png" alt=""><br>看到点击button函数，就可以看到flag：hctf{bAByCtsvlmE!}。</p>
 <h2 id="Hctf逆向第2题（善于抓住题目信息或者说题目暗示）">Hctf逆向第2题（<strong>善于抓住题目信息或者说题目暗示</strong>）</h2>
@@ -47,8 +47,8 @@
 <p><strong>总之，感觉ctf逆向的题目，技巧、观察力、多方位思考、工具这些很重要，真正逆向能力要求也不是特别高，当然有些题目除外哈。不过越高越好赛，我也是各种不懂。<br>这些东西可能说起来还是容易，但是真正掌握还是需要一定时间。<br>逆向这个东西也需要慢慢来，掌握还是需要一定的积累，一定的经验</strong>。</p>
 ]]></content>
     <summary type="html">
-    <![CDATA[<p>其实参加的比较少，很多也不懂，总结了一点点。<br>其实Crack类的题目，技巧很重要，阅读题目能力很关键，需要善于结合周边信息，善于用各种工具，善于多方位思考问题，找准关键地方，迅速定位。<br>下面举例说明。</p>
-<h2 id="Hctf_逆向第1题（善于使用工具）]]>
+    <![CDATA[<p>其实参加的比较少，很多也不懂，总结了一点点。<br>其实Crack类的题目，技巧很重要，阅读题目能力很关键，需要善于结合周边信息，善于用各种工具，善于多方位思考问题，找准关键地方，迅速定位。<br>下面举例说明。]]>
+    
     </summary>
     
       <category term="CTF" scheme="http://yoursite.com/categories/CTF/"/>
@@ -60,11 +60,11 @@
     <link href="http://yoursite.com/2014/11/07/CTF%E7%AE%80%E4%BB%8B/"/>
     <id>http://yoursite.com/2014/11/07/CTF简介/</id>
     <published>2014-11-07T11:43:15.000Z</published>
-    <updated>2014-11-13T08:30:05.000Z</updated>
+    <updated>2014-11-13T09:22:16.000Z</updated>
     <content type="html"><![CDATA[<h2 id="CTF概念：">CTF概念：</h2>
 <p>CTF全称Capture The Flag，即夺旗比赛，衍生自古代军事战争模式，两队人马前往对方基地夺旗，每队人马须在保护好己方旗帜的情况下将对方旗帜带回基地。</p>
 <h2 id="发展：">发展：</h2>
-<p>CTF比赛起源于DEFCON黑客大会（DEFCON 4  1996年），已发展全球范围网络安全圈的流行比赛。<br>“世界杯”： DEFCON  CTF<br>“分站赛” 、“大奖赛”：2012年全球三十多个国际性赛事<br>“地区赛”、“内部赛”：各个国家、地区、单位内部赛事。</p>
+<p>CTF比赛起源于DEFCON黑客大会（DEFCON 4  1996年），已发展全球范围网络安全圈的流行比赛。<br>“世界杯”： DEFCON  CTF<br>“分站赛” 、“大奖赛”：2012年全球三十多个国际性赛事<br>“地区赛”、“内部赛”：各个国家、地区、单位内部赛事。<a id="more"></a></p>
 <h2 id="竞赛形式：">竞赛形式：</h2>
 <p>1.解题模式<br>2.攻防模式<br>3.混合模式</p>
 <h2 id="技能：">技能：</h2>
@@ -74,7 +74,8 @@
     <![CDATA[<h2 id="CTF概念：">CTF概念：</h2>
 <p>CTF全称Capture The Flag，即夺旗比赛，衍生自古代军事战争模式，两队人马前往对方基地夺旗，每队人马须在保护好己方旗帜的情况下将对方旗帜带回基地。</p>
 <h2 id="发展：">发展：</h2>
-<p]]>
+<p>CTF比赛起源于DEFCON黑客大会（DEFCON 4  1996年），已发展全球范围网络安全圈的流行比赛。<br>“世界杯”： DEFCON  CTF<br>“分站赛” 、“大奖赛”：2012年全球三十多个国际性赛事<br>“地区赛”、“内部赛”：各个国家、地区、单位内部赛事。]]>
+    
     </summary>
     
       <category term="CTF" scheme="http://yoursite.com/categories/CTF/"/>
@@ -86,9 +87,9 @@
     <link href="http://yoursite.com/2014/11/05/C%E8%AF%AD%E8%A8%80%E6%93%8D%E4%BD%9CSQLITE3%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
     <id>http://yoursite.com/2014/11/05/C语言操作SQLITE3数据库/</id>
     <published>2014-11-05T03:31:56.000Z</published>
-    <updated>2014-11-05T03:45:07.000Z</updated>
+    <updated>2014-11-13T09:24:29.000Z</updated>
     <content type="html"><![CDATA[<h2 id="一、版本">一、版本</h2>
-<p>从 www.sqlite.org 网站可下载到最新的 sqlite 代码和编译版本。我写此文章时，最新代码是 3.3.17 版本。<br>很久没有去下载 sqlite 新代码，因此也不知道 sqlite 变化这么大。以前很多文件，现在全部合并成一个 sqlite3.c 文件。<br>如果单独用此文件，是挺好的，省去拷贝一堆文件还担心有没有遗漏。但是也带来一个问题：此文件太大，快接近7万行代码，VC开它整个机器都慢下来 了。<br>如果不需要改它代码，也就不需要打开 sqlite3.c 文件，机器不会慢。但是，下面我要写通过修改 sqlite 代码完成加密功能，那时候就比较痛苦了。</p>
+<p>从 www.sqlite.org 网站可下载到最新的 sqlite 代码和编译版本。写此文章时，最新代码是 3.3.17 版本。<br>很久没有去下载 sqlite 新代码，因此也不知道 sqlite 变化这么大。以前很多文件，现在全部合并成一个 sqlite3.c 文件。<br>如果单独用此文件，是挺好的，省去拷贝一堆文件还担心有没有遗漏。但是也带来一个问题：此文件太大，快接近7万行代码，VC开它整个机器都慢下来 了。<br>如果不需要改它代码，也就不需要打开 sqlite3.c 文件，机器不会慢。但是，下面我要写通过修改 sqlite 代码完成加密功能，那时候就比较痛苦了。<a id="more"></a></p>
 <h2 id="二、基本编译">二、基本编译</h2>
 <p>这个不想多说了，在 VC 里新建 dos 控制台空白工程，把 sqlite3.c 和 sqlite3.h 添加到工程，再新建一个 main.cpp 文件。在里面写:</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">extern</span> “C”</div><div class="line">{</div><div class="line"><span class="preprocessor">#include “./sqlite3.h”</span></div><div class="line">};</div><div class="line"><span class="keyword">int</span> main( <span class="keyword">int</span> , <span class="keyword">char</span>** )</div><div class="line">{</div><div class="line"><span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">}</div></pre></td></tr></table></figure>
@@ -118,7 +119,8 @@
 ]]></content>
     <summary type="html">
     <![CDATA[<h2 id="一、版本">一、版本</h2>
-<p>从 www.sqlite.org 网站可下载到最新的 sqlite 代码和编译版本。我写此文章时，最新代码是 3.3.17 版本。<br>很久没有去下载 sqlite 新代码，因此也不知道 sqlite 变化这么大。以前很多文]]>
+<p>从 www.sqlite.org 网站可下载到最新的 sqlite 代码和编译版本。写此文章时，最新代码是 3.3.17 版本。<br>很久没有去下载 sqlite 新代码，因此也不知道 sqlite 变化这么大。以前很多文件，现在全部合并成一个 sqlite3.c 文件。<br>如果单独用此文件，是挺好的，省去拷贝一堆文件还担心有没有遗漏。但是也带来一个问题：此文件太大，快接近7万行代码，VC开它整个机器都慢下来 了。<br>如果不需要改它代码，也就不需要打开 sqlite3.c 文件，机器不会慢。但是，下面我要写通过修改 sqlite 代码完成加密功能，那时候就比较痛苦了。]]>
+    
     </summary>
     
       <category term="基础编程" scheme="http://yoursite.com/categories/%E5%9F%BA%E7%A1%80%E7%BC%96%E7%A8%8B/"/>
@@ -130,9 +132,9 @@
     <link href="http://yoursite.com/2014/10/31/windows%E5%B8%B8%E8%A7%81%E5%8F%8D%E8%B0%83%E8%AF%95/"/>
     <id>http://yoursite.com/2014/10/31/windows常见反调试/</id>
     <published>2014-10-31T07:17:40.000Z</published>
-    <updated>2014-10-31T12:46:28.000Z</updated>
+    <updated>2014-11-13T09:24:40.000Z</updated>
     <content type="html"><![CDATA[<h2 id="1-_PEB">1. <strong>PEB</strong></h2>
-<p>0×002    BeingDebugged<br>正常运行：0×0        调试态：0×1<br>0x00c    Ldr：指向堆内存区地址<br>调试状态堆内存全部填充为0xFEEEFEEE<br>0×018    ProcessHeap：指向HEAP结构体<br>0x00c    Flags    正常运行：0×2    调试态：0×50000062<br>0×010    ForceFlags    正常运行：0×2    调试态：0×40000060<br>0×068    NtGlobalFlag<br>正常运行：0×0        调试态：0×70<br>代码示例：</p>
+<p>0×002    BeingDebugged<br>正常运行：0×0        调试态：0×1<br>0x00c    Ldr：指向堆内存区地址<br>调试状态堆内存全部填充为0xFEEEFEEE<br>0×018    ProcessHeap：指向HEAP结构体<br>0x00c    Flags    正常运行：0×2    调试态：0×50000062<br>0×010    ForceFlags    正常运行：0×2    调试态：0×40000060<br>0×068    NtGlobalFlag<br>正常运行：0×0        调试态：0×70<br>代码示例：<a id="more"></a></p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div></pre></td><td class="code"><pre><div class="line"><span class="preprocessor">#include </span></div><div class="line"><span class="preprocessor">#include</span></div><div class="line"><span class="keyword">extern</span> “C” BOOL WINAPI IsDebuggerPresent(VOID);</div><div class="line"><span class="keyword">int</span> main()</div><div class="line">{</div><div class="line">FARPROC pProc = NULL;</div><div class="line">LPBYTE pTeb = NULL;</div><div class="line">LPBYTE pPeb = NULL;</div><div class="line">LPBYTE pLdr = NULL;</div><div class="line">LPBYTE pHeap = NULL;</div><div class="line">DWORD dst[<span class="number">4</span>] = {<span class="number">0xEEFEEEFE</span>, <span class="number">0xEEFEEEFE</span>, <span class="number">0xEEFEEEFE</span>, <span class="number">0xEEFEEEFE</span>};</div><div class="line"><span class="comment">//BeingDebugged</span></div><div class="line"><span class="built_in">printf</span>(“BeingDebugged———\n”);</div><div class="line"><span class="keyword">if</span> (IsDebuggerPresent())</div><div class="line">{</div><div class="line"><span class="built_in">printf</span>(“Debugger Detected!\n”);</div><div class="line">}</div><div class="line"><span class="keyword">else</span></div><div class="line">{</div><div class="line"><span class="built_in">printf</span>(“No Debugger!\n”);</div><div class="line">}</div><div class="line"><span class="comment">//Ldr</span></div><div class="line"><span class="built_in">printf</span>(“\nLdr———\n”);</div><div class="line">pProc = GetProcAddress(GetModuleHandle(“ntdll.dll”), “NtCurrentTeb”);</div><div class="line">pTeb = (LPBYTE)(*pProc)();</div><div class="line">pPeb = (LPBYTE)*(LPDWORD)(pTeb + <span class="number">0</span>×<span class="number">30</span>);</div><div class="line">pLdr = (LPBYTE)*(LPDWORD)(pPeb + <span class="number">0xc</span>);</div><div class="line">__try</div><div class="line">{</div><div class="line"><span class="keyword">while</span> (<span class="number">1</span>)</div><div class="line">{</div><div class="line"><span class="keyword">if</span> (!<span class="built_in">memcmp</span>(dst, pLdr, <span class="keyword">sizeof</span>(dst)))</div><div class="line">{</div><div class="line"><span class="built_in">printf</span>(“Debugger Detected!\n”);</div><div class="line"><span class="keyword">break</span>;</div><div class="line">}</div><div class="line">pLdr++;</div><div class="line">}</div><div class="line">}</div><div class="line">__except (EXCEPTION_EXECUTE_HANDLER)</div><div class="line">{</div><div class="line"><span class="built_in">printf</span>(“No Debugger!\n”);</div><div class="line">}</div><div class="line"><span class="comment">//ProcessHeap</span></div><div class="line"><span class="built_in">printf</span>(“\nProcessHeap———\n”);</div><div class="line">pHeap = (LPBYTE)*(LPDWORD)(pPeb + <span class="number">0</span>×<span class="number">18</span>);</div><div class="line"><span class="keyword">if</span> (*(LPDWORD)(pHeap + <span class="number">0x0c</span>) == <span class="number">0</span>×<span class="number">50000062</span> || *(LPDWORD)(pHeap + <span class="number">0</span>×<span class="number">10</span>) == <span class="number">0</span>×<span class="number">40000060</span>)</div><div class="line">{</div><div class="line"><span class="built_in">printf</span>(“Debugger Detected!\n”);</div><div class="line">}</div><div class="line"><span class="keyword">else</span></div><div class="line">{</div><div class="line"><span class="built_in">printf</span>(“No Debugger!\n”);</div><div class="line">}</div><div class="line"><span class="comment">//NtGlobalFlag</span></div><div class="line"><span class="built_in">printf</span>(“\nNtGlobalFlag———\n”);</div><div class="line"><span class="keyword">if</span> (*(LPDWORD)(pPeb + <span class="number">0</span>×<span class="number">68</span>) == <span class="number">0</span>×<span class="number">70</span>)</div><div class="line">{</div><div class="line"><span class="built_in">printf</span>(“Debugger Detected!\n”);</div><div class="line">}</div><div class="line"><span class="keyword">else</span></div><div class="line">{</div><div class="line"><span class="built_in">printf</span>(“No Debugger!\n”);</div><div class="line">}</div><div class="line"><span class="built_in">printf</span>(“\n\n”);</div><div class="line"><span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">}</div></pre></td></tr></table></figure>
 
 <h2 id="2-_NtQueryInformationProcess">2. <strong>NtQueryInformationProcess</strong></h2>
@@ -163,7 +165,8 @@
 ]]></content>
     <summary type="html">
     <![CDATA[<h2 id="1-_PEB">1. <strong>PEB</strong></h2>
-<p>0×002    BeingDebugged<br>正常运行：0×0        调试态：0×1<br>0x00c    Ldr：指向堆内存区地址<br>调试状态堆内存全部填充为0x]]>
+<p>0×002    BeingDebugged<br>正常运行：0×0        调试态：0×1<br>0x00c    Ldr：指向堆内存区地址<br>调试状态堆内存全部填充为0xFEEEFEEE<br>0×018    ProcessHeap：指向HEAP结构体<br>0x00c    Flags    正常运行：0×2    调试态：0×50000062<br>0×010    ForceFlags    正常运行：0×2    调试态：0×40000060<br>0×068    NtGlobalFlag<br>正常运行：0×0        调试态：0×70<br>代码示例：]]>
+    
     </summary>
     
       <category term="安全技术" scheme="http://yoursite.com/categories/%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/"/>
