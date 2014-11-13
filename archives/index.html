@@ -50,57 +50,231 @@
 <h2 class="archive-title">归档</h2>
 
 
-  <div class="archive">
-    
-      <article class="post">
-        <div class="post-content">
-          <header>
-            <div class="icon"></div>
-            <time datetime="2014-11-13T08:29:08.000Z"><a href="/2014/11/13/CTF少许总结/">11月 13 2014</a></time>
-            
-              <h1 class="title"><a href="/2014/11/13/CTF少许总结/">CTF逆向类少许总结</a></h1>
-            
-          </header>
-        </div>
-      </article>
-    
-      <article class="post">
-        <div class="post-content">
-          <header>
-            <div class="icon"></div>
-            <time datetime="2014-11-07T11:43:15.000Z"><a href="/2014/11/07/CTF简介/">11月 7 2014</a></time>
-            
-              <h1 class="title"><a href="/2014/11/07/CTF简介/">CTF简介</a></h1>
-            
-          </header>
-        </div>
-      </article>
-    
-      <article class="post">
-        <div class="post-content">
-          <header>
-            <div class="icon"></div>
-            <time datetime="2014-11-05T03:31:56.000Z"><a href="/2014/11/05/C语言操作SQLITE3数据库/">11月 5 2014</a></time>
-            
-              <h1 class="title"><a href="/2014/11/05/C语言操作SQLITE3数据库/">C语言操作SQL</a></h1>
-            
-          </header>
-        </div>
-      </article>
-    
-      <article class="post">
-        <div class="post-content">
-          <header>
-            <div class="icon"></div>
-            <time datetime="2014-10-31T07:17:40.000Z"><a href="/2014/10/31/windows常见反调试/">10月 31 2014</a></time>
-            
-              <h1 class="title"><a href="/2014/10/31/windows常见反调试/">windows常见反调试</a></h1>
-            
-          </header>
-        </div>
-      </article>
-    
+  
+    <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-11-13T08:29:08.000Z"><a href="/2014/11/13/CTF少许总结/">11月 13 2014</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2014/11/13/CTF少许总结/">CTF逆向类少许总结</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>其实参加的比较少，很多也不懂，总结了一点点。<br>其实Crack类的题目，技巧很重要，阅读题目能力很关键，需要善于结合周边信息，善于用各种工具，善于多方位思考问题，找准关键地方，迅速定位。<br>下面举例说明。</p>
+<h2 id="Hctf_逆向第1题（善于使用工具）。">Hctf 逆向第1题（<strong>善于使用工具</strong>）。</h2>
+<p>107.189.158.112/d55757a7ccf958399789e18e1d8199de/babyCrack.zip<br>这个题目如果直接去调试，还是比较麻烦的，因为没有提示字符串，函数也不明确，但是如果用PEID先查壳，就能快速知道是,NET程序，<br>就可以用ILSpy或者.net reflector工具反编译出源码，<br><img src="/img/4101483FF0DB41C38DF5B24A13EA8596.png" alt=""><br>看到点击button函数，就可以看到flag：hctf{bAByCtsvlmE!}。</p>
+<h2 id="Hctf逆向第2题（善于抓住题目信息或者说题目暗示）">Hctf逆向第2题（<strong>善于抓住题目信息或者说题目暗示</strong>）</h2>
+<p>107.189.158.112/e81cbc49ae92b00d3b55430f21cbe2fe/babyCrack2.zip<br>这个题开始拿起用peid查了壳，发现没有壳。用OD跟了下，逻辑感觉不难，调理也很清楚，开始来了就一致在检测这个文件是不是PE文件，检测完了再单步走一下，就可以try again!!,<br>the key is what you  agin这些字符串，比且在开始也压入了一个字符串”idug|3<code>5ut</code>CCbz<code>DusnF</code>34~”，后面也会有跟这个字符串比较的函数。<br><img src="/img/46C23DCA47364DDE9CD09FA42A4E4DD2.png" alt=""><br>以为感觉就对了，但是后面在调试的时候，感觉无论输入啥子，都有点不对。<br>后面同伴提交了那串字符串，结果是对的。但是后面官网说了，那个题目答案有误。<br>正确的答案应该是每个字符串减1.<br>为什么呢。<br>idug每位的ascii减一就是hctf.在结合题目，.比赛中部分flag形式为hctf{xxxxxx}，部分flag不带hctf话括号，提交所见flag即可。<br>就可以得到答案了。我也看了writeup知道的。<br>其实这个题目考察的主要就是一个观察力。逆向能力要求也不是很高。</p>
+<h2 id="hctf_apk的一个题目（NomalFile）(需要的也是善于观察)">hctf apk的一个题目（NomalFile）(<strong>需要的也是善于观察</strong>)</h2>
+<p>这个题目用apk改之理反汇编后，算法也明确。</p>
+<p><img src="/img/C(UEF46_7VYUAR}D345MCXW.png" alt=""><br>flag就是字符数组（16位），算的时候取它的 0 4  8 12 1  ‘+’‘ +’ 13位跟其他一组数做xor,最后跟这个字符数组的第6 10 14 3 ‘+’ 11  “+”作比较。还有些限制条件，15位与13位相等这些，这里就不说了。<br>通过这些条件就可以确定数组的某三位了。<br>还有一个就是接受用户输入的时候，不够16的位，它会去读取String str1 = Environment.getExternalStorageDirectory().getPath() + “/brand.txt”;的第一行，凑够16位数字。<br>开始同伴一直在找这个文件，无果。<br>后面就想，既然接受用户输入，那么答案就应该可以不相同的。自己就凑了一个答案，感觉符合条件。以为对了，提交的时候错误！！！<br>导致最后也没有成功提交。<br>看了writeup后，心里各种 草泥马，在strings..xml里面有个字符串，401！n++p;这个就对应最初取的那几位。</p>
+<p><img src="/img/A32F0A1097F0422386C9285B92FF4796.png" alt=""><br>这样，就可以确定flag.<br>主要是没有经验，也没有敏锐的观察力。唉，伤不起。</p>
+<h2 id="hctf_apk的第2题，">hctf apk的第2题，</h2>
+<p>该题也不是很难，关键信息也很容易定位，更改2个跳转就可以输出flag,尼玛，输出的时候是日文，打印出来各种提交，各种不通过。最后也没有解决，就不附图了。<br>关键是现在都还没有解决，没有看到writeup啊。</p>
+<h2 id="hctf_Linux下的一个题（善于使用脚本语言）。">hctf Linux下的一个题（<strong>善于使用脚本语言</strong>）。</h2>
+<p>该elf文件是一个64的文件，导入ida中，很快就可以看到check函数，或者字符串You Win,Sorry等，</p>
+<p><img src="/img/08300124B5444C8887C1C91D87EFA781.png" alt=""></p>
+<p>调理很清楚，后面分析出来算法（矩阵），不知道怎么倒推回去，唉，编程能力太差，很多知道东西都不知道怎么写。<br>后面同伴想到用malab解，但是手工输入，解出来还是有些问题。最后看到了别人写的writeup,<br>用python导入了numpy库，就很快解出来了。</p>
+<h2 id="还有就是第一次SSCTF的第四题（善于多方面思考，不要一根筋）">还有就是第一次SSCTF的第四题（<strong>善于多方面思考，不要一根筋</strong>）</h2>
+<p>题目是”输入正确的密码，会释放出文件。key就在文件中。tips:第一层密码为6为纯数字，第二层密码也是6位。“<br>该exe文件是加了一层壳（FSG2.0），但是这个壳很好脱，也可以带壳调试。</p>
+<p><img src="/img/926A8E6F896E473C82D0A5698C2D8497.png" alt=""></p>
+<p>在GetProcAddress或者函数后，就可以下GetDlgItemTextA、GetWindowTextA等断点，获取输入，后面调试一步步就很简单，就是文件的读取，创建等，很清晰的。<br>算法就是md5(md5(“HOWMPxxxxxx”)) == 09B2F924C20C5CA427EED2C5B98BEFBF，xxxxx代表输入，最后会调用strcmp比较，</p>
+<p><img src="/img/BFA9BCAEE6FD4DFDBB0B3FAD0739D30C.png" alt=""></p>
+<p>如果输入正确后，会返回0，进入正确的分支，并释放文件，若不正确，就进入错误分支，当然也不会释放文件。<br>如果我们要看它到底释放什么文件，就可以强制跳转等。<br>这里我们也可以写脚本来解这个值，因为题目已经告知第一层密码是6为数字，</p>
+<p><img src="/img/521A3CDCEC614A1FB69F2E42233A8052.png" alt=""></p>
+<p>很快也能解出来。<br>但是第2层密码没有提示，这个要破解就很费力。后面同伴逆向思考或者换位思考，既然我们知道它释放的是什么文件，而且一般文件开头都是固定的，释放后数据就是通过异或来得到该文件的。<br>那么通过释放后的数据和正常文件的前6个字节xor即可得到密码，第一层释放的是PE文件，第2层释放的是gif文件，通过异或很快得到密码。<br>MZ…… =&gt;4D 5A 00 00 00 00 xor 78 6C 34 39 38 37 =&gt;35 36 34 49 48 47 =》564987<br>GIF89aX =》47 49 46 38 39 61 58 xor 30 68 37 1E 5A 12 =&gt; w!q&amp;cs<br>分别是564987和w!q&amp;cs。</p>
+<p>还有一些其他的题目，就不一一列举了。</p>
+<p><strong>总之，感觉ctf逆向的题目，技巧、观察力、多方位思考、工具这些很重要，真正逆向能力要求也不是特别高，当然有些题目除外哈。不过越高越好赛，我也是各种不懂。<br>这些东西可能说起来还是容易，但是真正掌握还是需要一定时间。<br>逆向这个东西也需要慢慢来，掌握还是需要一定的积累，一定的经验</strong>。</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
   </div>
+</article>
+
+
+
+  
+    <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-11-07T11:43:15.000Z"><a href="/2014/11/07/CTF简介/">11月 7 2014</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2014/11/07/CTF简介/">CTF简介</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h2 id="CTF概念：">CTF概念：</h2>
+<p>CTF全称Capture The Flag，即夺旗比赛，衍生自古代军事战争模式，两队人马前往对方基地夺旗，每队人马须在保护好己方旗帜的情况下将对方旗帜带回基地。</p>
+<h2 id="发展：">发展：</h2>
+<p>CTF比赛起源于DEFCON黑客大会（DEFCON 4  1996年），已发展全球范围网络安全圈的流行比赛。<br>“世界杯”： DEFCON  CTF<br>“分站赛” 、“大奖赛”：2012年全球三十多个国际性赛事<br>“地区赛”、“内部赛”：各个国家、地区、单位内部赛事。</p>
+<h2 id="竞赛形式：">竞赛形式：</h2>
+<p>1.解题模式<br>2.攻防模式<br>3.混合模式</p>
+<h2 id="技能：">技能：</h2>
+<p>1、逆向工程。我强烈建议你得到一个IDA Pro的副本，这有免费版和学生认证书。尝试下crack me的问题。写出你的C语言代码，然后进行反编译。重复这个过程，同时更改编译器的选项和程序逻辑。在编译的二进制文件中“if”声明和“select”语句有什么不同？我建议你专注于一个单一的原始架构：x86、x86_64或是ARM。在处理器手册中查找你要找的，参考有：<br>《Practical Reverse Engineering》<br>《Reversing: Secrets of Reverse Engineering》<br>《The IDA Pro Book》<br>2、加密。虽然这不是我自己的强项，但这里有一些参考还是要看看的：<br>《Applied Cryptography》<br>《Practical Cryptography》<br>Cryptography I<br>3、ACM编程。选择一个高层次的语言，我推荐使用Python或Ruby。对于Python而言，阅读下《Dive into Python》和找一些你要加入的项目。值得一提的是Metasploit是用Ruby编写的。关于算法和数据结构的计算机科学课也要在此类中要走很长的路。看看来自CTF和其他编程的挑战，战胜他们。专注于创建一个解决方法而不是最快或是最好的方法，特别是在你刚刚开始的时候。<br>4、web漏洞。有很多的网络编程技术，在CTF中最流行的就是PHP和SQL。php.net网站（译者注：需翻墙）是一个梦幻的语言参考，只要搜索你好奇的功能。PHP之后，看到网页上存在的挑战的最常见的方法就是使用Python或Ruby脚本。主要到技术有重叠，这有一本关于网络安全漏洞的好书，是《黑客攻防技术宝典：Web实战篇》。除此之外，在学习了一些基本技术之后，你可能也想通过比较流行的免费软件工具来取得一些经验。这些在CTF竞争中也可能会偶尔用到，这些加密会和你凭经验得到的加密重叠。<br>5、二进制练习。这是我个人的爱好，我建议你在进入二进制练习前要完成逆向工程的学习。这有几个你可以独立学习的常见类型漏洞：栈溢出，堆溢出，对于初学者的格式字符串漏洞。很多是通过练习思维来辨别漏洞的类型。学习以往的漏洞是进入二进制门槛的最好途径。推荐你可以阅读：<br>《黑客：漏洞发掘的艺术》<br>《黑客攻防技术宝典：系统实战篇》<br>《The Art of Software Security Assessment》<br>6、取证/网络。大多数的CTF团队往往有“一个”负责取证的人。</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+  
+    <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-11-05T03:31:56.000Z"><a href="/2014/11/05/C语言操作SQLITE3数据库/">11月 5 2014</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2014/11/05/C语言操作SQLITE3数据库/">C语言操作SQL</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h2 id="一、版本">一、版本</h2>
+<p>从 www.sqlite.org 网站可下载到最新的 sqlite 代码和编译版本。我写此文章时，最新代码是 3.3.17 版本。<br>很久没有去下载 sqlite 新代码，因此也不知道 sqlite 变化这么大。以前很多文件，现在全部合并成一个 sqlite3.c 文件。<br>如果单独用此文件，是挺好的，省去拷贝一堆文件还担心有没有遗漏。但是也带来一个问题：此文件太大，快接近7万行代码，VC开它整个机器都慢下来 了。<br>如果不需要改它代码，也就不需要打开 sqlite3.c 文件，机器不会慢。但是，下面我要写通过修改 sqlite 代码完成加密功能，那时候就比较痛苦了。</p>
+<h2 id="二、基本编译">二、基本编译</h2>
+<p>这个不想多说了，在 VC 里新建 dos 控制台空白工程，把 sqlite3.c 和 sqlite3.h 添加到工程，再新建一个 main.cpp 文件。在里面写:</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">extern</span> “C”</div><div class="line">{</div><div class="line"><span class="preprocessor">#include “./sqlite3.h”</span></div><div class="line">};</div><div class="line"><span class="keyword">int</span> main( <span class="keyword">int</span> , <span class="keyword">char</span>** )</div><div class="line">{</div><div class="line"><span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">}</div></pre></td></tr></table></figure>
+
+<p>为什么要 extern “C” ？如果问这个问题，我不想说太多，这是C++的基础。要在 C++ 里使用一段 C 的代码，必须要用 extern “C” 括起来。<br>C++跟 C虽然语法上有重叠，但是它们是两个不同的东西，内存里的布局是完全不同的，在C++编译器里不用extern “C”括起C代码，会导致编译器不知道该如何为 C 代码描述内存布局。<br>可能在 sqlite3.c 里人家已经把整段代码都 extern “C” 括起来了，但是你遇到一个 .c 文件就自觉的再括一次，也没什么不好。<br>基本工程就这样建立起来了。编译，可以通过。但是有一堆的 warning。可以不管它。</p>
+<h2 id="三、SQLITE操作入门">三、SQLITE操作入门</h2>
+<p>sqlite提供的是一些C函数接口，你可以用这些函数操作数据库。通过使用这些接口，传递一些标准 sql 语句（以 char * 类型）给 sqlite 函数，sqlite 就会为你操作数据库。<br>sqlite 跟MS的access一样是文件型数据库，就是说，一个数据库就是一个文件，此数据库里可以建立很多的表，可以建立索引、触发器等等，但是，它实际上得到的就是一个文件。<br>备份这个文件就备份了整个数据库。sqlite 不需要任何数据库引擎，这意味着如果你需要 sqlite 来保存一些用户数据，甚至都不需要安装数据库。<br>下面开始介绍数据库基本操作。</p>
+<h3 id="1_基本流程（1）关键数据结构">1 基本流程（1）关键数据结构</h3>
+<p>sqlite 里最常用到的是sqlite3 <em> 类型。从数据库打开开始，sqlite就要为这个类型准备好内存，直到数据库关闭，整个过程都需要用到这个类型.<br>当数据库打开时开始，这个类型的变量就代表了你要操作的数据库。下面再详细介绍。<br>（2）打开数据库<br>int sqlite3_open( 文件名, sqlite3 <em>* );<br>用这个函数开始数据库操作。<br>需要传入两个参数，一是数据库文件名，比如：c:\DongChunGuang_Database.db。<br>文件名不需要一定存在，如果此文件不存在，sqlite 会自动建立它。如果它存在，就尝试把它当数据库文件来打开。<br>sqlite3 </em></em> 参数即前面提到的关键数据结构。这个结构底层细节如何，你不要关它。<br>函数返回值表示操作是否正确，如果是SQLITE_OK 则表示操作正常。相关的返回值sqlite定义了一些宏。具体这些宏的含义可以参考 sqlite3.h 文件。<br>里面有详细定义（顺便说一下，sqlite3 的代码注释率自称是非常高的，实际上也的确很高。只要你会看英文，sqlite 可以让你学到不少东西）。<br>下面介绍关闭数据库后，再给一段参考代码。<br>（3）关闭数据库</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">int</span> sqlite3_close(sqlite3 *);</div><div class="line">前面如果用 sqlite3_open 开启了一个数据库，结尾时不要忘了用这个函数关闭数据库。</div><div class="line">下面给段简单的代码：</div><div class="line"><span class="keyword">extern</span> “C”</div><div class="line">{</div><div class="line"><span class="preprocessor">#include “./sqlite3.h”</span></div><div class="line">};</div><div class="line"><span class="keyword">int</span> main( <span class="keyword">int</span> , <span class="keyword">char</span>** )</div><div class="line">{</div><div class="line">sqlite3 * db = NULL; <span class="comment">//声明sqlite关键结构指针</span></div><div class="line"><span class="keyword">int</span> result;</div><div class="line"></div><div class="line"><span class="comment">//打开数据库</span></div><div class="line"><span class="comment">//需要传入 db 这个指针的指针，因为 sqlite3_open 函数要为这个指针分配内存，还要让db指针指向这个内存区</span></div><div class="line">result = sqlite3_open( “c:\Dcg_database.db”, &db );</div><div class="line"><span class="keyword">if</span>( result != SQLITE_OK )</div><div class="line">{</div><div class="line"><span class="comment">//数据库打开失败</span></div><div class="line"><span class="keyword">return</span> -<span class="number">1</span>;</div><div class="line">}</div><div class="line"><span class="comment">//数据库操作代码</span></div><div class="line"><span class="comment">//…</span></div><div class="line"></div><div class="line"><span class="comment">//数据库打开成功</span></div><div class="line"><span class="comment">//关闭数据库</span></div><div class="line">sqlite3_close( db );</div><div class="line"><span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">}</div></pre></td></tr></table></figure>
+
+<p>这就是一次数据库操作过程。</p>
+<h3 id="2_SQL语句操作">2 SQL语句操作</h3>
+<p>本节介绍如何用sqlite 执行标准 sql 语法。</p>
+<p>（1）执行sql语句</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">int</span> sqlite3_exec(sqlite3*, <span class="keyword">const</span> <span class="keyword">char</span> *sql, sqlite3_callback, <span class="keyword">void</span> *,  <span class="keyword">char</span> **errmsg );</div><div class="line">这就是执行一条 sql 语句的函数。</div><div class="line">第<span class="number">1</span>个参数不再说了，是前面open函数得到的指针。说了是关键数据结构。</div><div class="line">第<span class="number">2</span>个参数<span class="keyword">const</span> <span class="keyword">char</span> *sql 是一条 sql 语句，以\<span class="number">0</span>结尾。</div><div class="line">第<span class="number">3</span>个参数sqlite3_callback 是回调，当这条语句执行之后，sqlite3会去调用你提供的这个函数。（什么是回调函数，自己找别的资料学习）</div><div class="line">第<span class="number">4</span>个参数<span class="keyword">void</span> * 是你所提供的指针，你可以传递任何一个指针参数到这里，这个参数最终会传到回调函数里面，如果不需要传递指针给回调函数，可以填NULL。</div><div class="line">等下我们再看回调函数的写法，以及这个参数的使用。</div><div class="line">第 <span class="number">5</span>个参数<span class="keyword">char</span> ** errmsg 是错误信息。注意是指针的指针。</div><div class="line">sqlite3里面有很多固定的错误信息。执行 sqlite3_exec 之后，执行失败时可以查阅这个指针（直接 <span class="built_in">printf</span>(“%s\n”,errmsg)）得到一串字符串信息，这串信息告诉你错在什么地方。</div><div class="line">sqlite3_exec函数通过修改你传入的指针的指 针，把你提供的指针指向错误提示信息，这样sqlite3_exec函数外面就可以通过这个 <span class="keyword">char</span>*得到具体错误提示。</div><div class="line">说明：通常，sqlite3_callback 和它后面的 <span class="keyword">void</span> * 这两个位置都可以填 NULL。</div><div class="line">填NULL表示你不需要回调。比如你做 insert 操作，做 <span class="keyword">delete</span> 操作，就没有必要使用回调。而当你做 select 时，就要使用回调，因为 sqlite3 把数据查出来，得通过回调告诉你查出了什么数据。</div></pre></td></tr></table></figure>
+
+<p>（2）exec 的回调</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">typedef</span> <span class="keyword">int</span> (*sqlite3_callback)(<span class="keyword">void</span>*,<span class="keyword">int</span>,<span class="keyword">char</span>**, <span class="keyword">char</span>**);</div><div class="line">你的回调函数必须定义成上面这个函数的类型。下面给个简单的例子：</div><div class="line"><span class="comment">//sqlite3的回调函数</span></div><div class="line"><span class="comment">// sqlite 每查到一条记录，就调用一次这个回调</span></div><div class="line"><span class="keyword">int</span> LoadMyInfo( <span class="keyword">void</span> * para, <span class="keyword">int</span> n_column, <span class="keyword">char</span> ** column_value, <span class="keyword">char</span> ** column_name )</div><div class="line">{</div><div class="line"><span class="comment">//para是你在 sqlite3_exec 里传入的 void * 参数</span></div><div class="line"><span class="comment">//通过para参数，你可以传入一些特殊的指针（比如类指针、结构指针），然后在这里面强制转换成对应的类型（这里面是void*类型，必须强制转换成你的类型才可用）。然后操作这些数据</span></div><div class="line"><span class="comment">//n_column是这一条记录有多少个字段 (即这条记录有多少列)</span></div><div class="line"><span class="comment">// char ** column_value 是个关键值，查出来的数据都保存在这里，它实际上是个1维数组（不要以为是2维数组），每一个元素都是一个 char * 值，是一个字段内容（用字符串来表示，以\0结尾）</span></div><div class="line"></div><div class="line"><span class="comment">//char ** column_name 跟 column_value是对应的，表示这个字段的字段名称</span></div><div class="line"></div><div class="line"><span class="comment">//这里，我不使用 para 参数。忽略它的存在.</span></div><div class="line"></div><div class="line"><span class="keyword">int</span> i;</div><div class="line"></div><div class="line"><span class="built_in">printf</span>( “记录包含 %d 个字段\n”, n_column );</div><div class="line"><span class="keyword">for</span>( i = <span class="number">0</span> ; i &lt; n_column; i ++ )</div><div class="line">{</div><div class="line"><span class="built_in">printf</span>( “字段名:%s  ?&gt; 字段值:%s\n”,  column_name[i], column_value[i] );</div><div class="line">}</div><div class="line"><span class="built_in">printf</span>( “——————\n“ );</div><div class="line"><span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">}</div><div class="line"></div><div class="line"><span class="keyword">int</span> main( <span class="keyword">int</span> , <span class="keyword">char</span> ** )</div><div class="line">{</div><div class="line">sqlite3 * db;</div><div class="line"><span class="keyword">int</span> result;</div><div class="line"><span class="keyword">char</span> * errmsg = NULL;</div><div class="line"></div><div class="line">result = sqlite3_open( “c:\\Dcg_database.db”, &db );</div><div class="line"><span class="keyword">if</span>( result != SQLITE_OK )</div><div class="line">{</div><div class="line"><span class="comment">//数据库打开失败</span></div><div class="line"><span class="keyword">return</span> -<span class="number">1</span>;</div><div class="line">}</div><div class="line"></div><div class="line"><span class="comment">//数据库操作代码</span></div><div class="line"><span class="comment">//创建一个测试表，表名叫 MyTable_1，有2个字段： ID 和 name。其中ID是一个自动增加的类型，以后insert时可以不去指定这个字段，它会自己从0开始增加</span></div><div class="line">result = sqlite3_exec( db, “create table MyTable_1( ID integer primary key autoincrement, name nvarchar(<span class="number">32</span>) )”, NULL, NULL, errmsg );</div><div class="line"><span class="keyword">if</span>(result != SQLITE_OK )</div><div class="line">{</div><div class="line"><span class="built_in">printf</span>( “创建表失败，错误码:%d，错误原因:%s\n”, result, errmsg );</div><div class="line">}</div><div class="line"></div><div class="line"><span class="comment">//插入一些记录</span></div><div class="line">result = sqlite3_exec( db, “insert into MyTable_1( name ) values ( ‘走路’ )”, <span class="number">0</span>, <span class="number">0</span>, errmsg );</div><div class="line"><span class="keyword">if</span>(result != SQLITE_OK )</div><div class="line">{</div><div class="line"><span class="built_in">printf</span>( “插入记录失败，错误码:%d，错误原因:%s\n”, result, errmsg );</div><div class="line">}</div><div class="line"></div><div class="line">result = sqlite3_exec( db, “insert into MyTable_1( name ) values ( ‘骑单车’ )”, <span class="number">0</span>, <span class="number">0</span>, errmsg );</div><div class="line"><span class="keyword">if</span>(result != SQLITE_OK )</div><div class="line">{</div><div class="line"><span class="built_in">printf</span>( “插入记录失败，错误码:%d，错误原因:%s\n”, result, errmsg );</div><div class="line">}</div><div class="line"></div><div class="line">result = sqlite3_exec( db, “insert into MyTable_1( name ) values ( ‘坐汽车’ )”, <span class="number">0</span>, <span class="number">0</span>, errmsg );</div><div class="line"><span class="keyword">if</span>(result != SQLITE_OK )</div><div class="line">{</div><div class="line"><span class="built_in">printf</span>( “插入记录失败，错误码:%d，错误原因:%s\n”, result, errmsg );</div><div class="line">}</div><div class="line"></div><div class="line"><span class="comment">//开始查询数据库</span></div><div class="line">result = sqlite3_exec( db, “select * from MyTable_1”, LoadMyInfo, NULL, errmsg );</div><div class="line"></div><div class="line"><span class="comment">//关闭数据库</span></div><div class="line">sqlite3_close( db );</div><div class="line"><span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">}</div></pre></td></tr></table></figure>
+
+<p>通过上面的例子，应该可以知道如何打开一个数据库，如何做数据库基本操作。<br>有这些知识，基本上可以应付很多数据库操作了。</p>
+<h3 id="（3）不使用回调查询数据库">（3）不使用回调查询数据库</h3>
+<p>上面介绍的 sqlite3_exec 是使用回调来执行 select 操作。还有一个方法可以直接查询而不需要回调。<br>但是，我个人感觉还是回调好，因为代码可以更加整齐，只不过用回调很麻烦，你得声明一个函数，如果这个函数 是类成员函数，你还不得不把它声明成 static 的<br>（要问为什么？这又是C++基础了。C++成员函数实际上隐藏了一个参数：this，C++调用类的成员函数的时候，隐含把类指针当成函数的第一个参数 传递进去。<br>结果，这造成跟前面说的 sqlite 回调函数的参数不相符。只有当把成员函数声明成 static 时，它才没有多余的隐含的this参数）。<br>虽然回调显得代码整齐，但有时候你还是想要非回调的 select 查询。这可以通过 sqlite3_get_table 函数做到。<br>int sqlite3_get_table(sqlite3<em>, const char </em>sql, char <strong><em>resultp, int </em>nrow, int *ncolumn, char </strong>errmsg );<br>第1个参数不再多说，看前面的例子。<br>第2个参数是 sql 语句，跟 sqlite3_exec 里的 sql 是一样的。是一个很普通的以\0结尾的char *字符串。<br>第3个参数是查询结果，它依然一维数组（不要以为是二维数组，更不要以为是三维数组）。它内存布局是：第一行是字段名称，后面是紧接着是每个字段的值。下面用例子来说事。<br>第4个参数是查询出多少条记录（即查出多少行）。<br>第5个参数是多少个字段（多少列）。<br>第6个参数是错误信息，跟前面一样，这里不多说了。<br>下面给个简单例子:</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">int</span> main( <span class="keyword">int</span> , <span class="keyword">char</span> ** )</div><div class="line">{</div><div class="line">sqlite3 * db;</div><div class="line"><span class="keyword">int</span> result;</div><div class="line"><span class="keyword">char</span> * errmsg = NULL;</div><div class="line"><span class="keyword">char</span> **dbResult; <span class="comment">//是 char ** 类型，两个*号</span></div><div class="line"><span class="keyword">int</span> nRow, nColumn;</div><div class="line"><span class="keyword">int</span> i , j;</div><div class="line"><span class="keyword">int</span> index;</div><div class="line"></div><div class="line">result = sqlite3_open( “c:\\Dcg_database.db”, &db );</div><div class="line"><span class="keyword">if</span>( result != SQLITE_OK )</div><div class="line">{</div><div class="line"><span class="comment">//数据库打开失败</span></div><div class="line"><span class="keyword">return</span> -<span class="number">1</span>;</div><div class="line">}</div><div class="line"></div><div class="line"><span class="comment">//数据库操作代码</span></div><div class="line"><span class="comment">//假设前面已经创建了 MyTable_1 表</span></div><div class="line"><span class="comment">//开始查询，传入的 dbResult 已经是 char **，这里又加了一个 & 取地址符，传递进去的就成了 char ***</span></div><div class="line">result = sqlite3_get_table( db, “select * from MyTable_1”, &dbResult, &nRow, &nColumn, &errmsg );</div><div class="line"><span class="keyword">if</span>( SQLITE_OK == result )</div><div class="line">{</div><div class="line"><span class="comment">//查询成功</span></div><div class="line">index = nColumn; <span class="comment">//前面说过 dbResult 前面第一行数据是字段名称，从 nColumn 索引开始才是真正的数据</span></div><div class="line"><span class="built_in">printf</span>( “查到%d条记录\n”, nRow );</div><div class="line"></div><div class="line"><span class="keyword">for</span>(  i = <span class="number">0</span>; i &lt; nRow ; i++ )</div><div class="line">{</div><div class="line"><span class="built_in">printf</span>( “第 %d 条记录\n”, i+<span class="number">1</span> );</div><div class="line"><span class="keyword">for</span>( j = <span class="number">0</span> ; j &lt; nColumn; j++ )</div><div class="line">{</div><div class="line"><span class="built_in">printf</span>( “字段名:%s  ?&gt; 字段值:%s\n”,  dbResult[j], dbResult [index] );</div><div class="line">++index; <span class="comment">// dbResult 的字段值是连续的，从第0索引到第 nColumn – 1索引都是字段名称，从第 nColumn 索引开始，后面都是字段值，它把一个二维的表（传统的行列表示法）用一个扁平的形式来表示</span></div><div class="line">}</div><div class="line"><span class="built_in">printf</span>( “——-\n” );</div><div class="line">}</div><div class="line">}</div><div class="line"></div><div class="line"><span class="comment">//到这里，不论数据库查询是否成功，都释放 char** 查询结果，使用 sqlite 提供的功能来释放</span></div><div class="line">sqlite3_free_table( dbResult );</div><div class="line"></div><div class="line"><span class="comment">//关闭数据库</span></div><div class="line">sqlite3_close( db );</div><div class="line"><span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">}</div></pre></td></tr></table></figure>
+
+<p>到这个例子为止，sqlite3 的常用用法都介绍完了。<br>用以上的方法，再配上 sql 语句，完全可以应付绝大多数数据库需求。</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+  
+    <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-10-31T07:17:40.000Z"><a href="/2014/10/31/windows常见反调试/">10月 31 2014</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2014/10/31/windows常见反调试/">windows常见反调试</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h2 id="1-_PEB">1. <strong>PEB</strong></h2>
+<p>0×002    BeingDebugged<br>正常运行：0×0        调试态：0×1<br>0x00c    Ldr：指向堆内存区地址<br>调试状态堆内存全部填充为0xFEEEFEEE<br>0×018    ProcessHeap：指向HEAP结构体<br>0x00c    Flags    正常运行：0×2    调试态：0×50000062<br>0×010    ForceFlags    正常运行：0×2    调试态：0×40000060<br>0×068    NtGlobalFlag<br>正常运行：0×0        调试态：0×70<br>代码示例：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div></pre></td><td class="code"><pre><div class="line"><span class="preprocessor">#include </span></div><div class="line"><span class="preprocessor">#include</span></div><div class="line"><span class="keyword">extern</span> “C” BOOL WINAPI IsDebuggerPresent(VOID);</div><div class="line"><span class="keyword">int</span> main()</div><div class="line">{</div><div class="line">FARPROC pProc = NULL;</div><div class="line">LPBYTE pTeb = NULL;</div><div class="line">LPBYTE pPeb = NULL;</div><div class="line">LPBYTE pLdr = NULL;</div><div class="line">LPBYTE pHeap = NULL;</div><div class="line">DWORD dst[<span class="number">4</span>] = {<span class="number">0xEEFEEEFE</span>, <span class="number">0xEEFEEEFE</span>, <span class="number">0xEEFEEEFE</span>, <span class="number">0xEEFEEEFE</span>};</div><div class="line"><span class="comment">//BeingDebugged</span></div><div class="line"><span class="built_in">printf</span>(“BeingDebugged———\n”);</div><div class="line"><span class="keyword">if</span> (IsDebuggerPresent())</div><div class="line">{</div><div class="line"><span class="built_in">printf</span>(“Debugger Detected!\n”);</div><div class="line">}</div><div class="line"><span class="keyword">else</span></div><div class="line">{</div><div class="line"><span class="built_in">printf</span>(“No Debugger!\n”);</div><div class="line">}</div><div class="line"><span class="comment">//Ldr</span></div><div class="line"><span class="built_in">printf</span>(“\nLdr———\n”);</div><div class="line">pProc = GetProcAddress(GetModuleHandle(“ntdll.dll”), “NtCurrentTeb”);</div><div class="line">pTeb = (LPBYTE)(*pProc)();</div><div class="line">pPeb = (LPBYTE)*(LPDWORD)(pTeb + <span class="number">0</span>×<span class="number">30</span>);</div><div class="line">pLdr = (LPBYTE)*(LPDWORD)(pPeb + <span class="number">0xc</span>);</div><div class="line">__try</div><div class="line">{</div><div class="line"><span class="keyword">while</span> (<span class="number">1</span>)</div><div class="line">{</div><div class="line"><span class="keyword">if</span> (!<span class="built_in">memcmp</span>(dst, pLdr, <span class="keyword">sizeof</span>(dst)))</div><div class="line">{</div><div class="line"><span class="built_in">printf</span>(“Debugger Detected!\n”);</div><div class="line"><span class="keyword">break</span>;</div><div class="line">}</div><div class="line">pLdr++;</div><div class="line">}</div><div class="line">}</div><div class="line">__except (EXCEPTION_EXECUTE_HANDLER)</div><div class="line">{</div><div class="line"><span class="built_in">printf</span>(“No Debugger!\n”);</div><div class="line">}</div><div class="line"><span class="comment">//ProcessHeap</span></div><div class="line"><span class="built_in">printf</span>(“\nProcessHeap———\n”);</div><div class="line">pHeap = (LPBYTE)*(LPDWORD)(pPeb + <span class="number">0</span>×<span class="number">18</span>);</div><div class="line"><span class="keyword">if</span> (*(LPDWORD)(pHeap + <span class="number">0x0c</span>) == <span class="number">0</span>×<span class="number">50000062</span> || *(LPDWORD)(pHeap + <span class="number">0</span>×<span class="number">10</span>) == <span class="number">0</span>×<span class="number">40000060</span>)</div><div class="line">{</div><div class="line"><span class="built_in">printf</span>(“Debugger Detected!\n”);</div><div class="line">}</div><div class="line"><span class="keyword">else</span></div><div class="line">{</div><div class="line"><span class="built_in">printf</span>(“No Debugger!\n”);</div><div class="line">}</div><div class="line"><span class="comment">//NtGlobalFlag</span></div><div class="line"><span class="built_in">printf</span>(“\nNtGlobalFlag———\n”);</div><div class="line"><span class="keyword">if</span> (*(LPDWORD)(pPeb + <span class="number">0</span>×<span class="number">68</span>) == <span class="number">0</span>×<span class="number">70</span>)</div><div class="line">{</div><div class="line"><span class="built_in">printf</span>(“Debugger Detected!\n”);</div><div class="line">}</div><div class="line"><span class="keyword">else</span></div><div class="line">{</div><div class="line"><span class="built_in">printf</span>(“No Debugger!\n”);</div><div class="line">}</div><div class="line"><span class="built_in">printf</span>(“\n\n”);</div><div class="line"><span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">}</div></pre></td></tr></table></figure>
+
+<h2 id="2-_NtQueryInformationProcess">2. <strong>NtQueryInformationProcess</strong></h2>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">NTSYSAPI NTSTATUS NTAPI NtQueryInformationProcess (</div><div class="line">HANDLE     ProcessHandle, 　　　　　　<span class="comment">// 进程句柄</span></div><div class="line">PROCESSINFOCLASS 　　InformationClass, <span class="comment">// 信息类型</span></div><div class="line">PVOID 　　　　　ProcessInformation, 　　　 <span class="comment">// 缓冲指针</span></div><div class="line">ULONG 　　　　ProcessInformationLength, <span class="comment">// 以字节为单位的缓冲大小</span></div><div class="line">PULONG 　　　ReturnLength OPTIONAL     <span class="comment">// 写入缓冲的字节数</span></div><div class="line">);</div></pre></td></tr></table></figure>
+
+<p>第二个枚举参数中的三个域可以用来做反调试<br>ProcessDebugPort = 0×7<br>正常运行：0×0        调试态：0xFFFFFFFF<br>ProcessDebugObjectHandle = 0x1E<br>正常运行：NULL        调试态：调试对象句柄<br>ProcessDebugFlags = 0x1F<br>正常运行：0×1        调试态：0×0<br>代码示例：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line">proc = (NTQUERYINFORMATIONPROCESS)GetProcAddress(GetModuleHandle(“ntdll.dll”), “NtQueryInformationProcess”);</div><div class="line"><span class="comment">//ProcessDebugPort = 0×7</span></div><div class="line">(*proc)(GetCurrentProcess(), ProcessDebugPort, &dwRet, <span class="keyword">sizeof</span>(dwRet), NULL);</div><div class="line"><span class="keyword">if</span> (dwRet != <span class="number">0</span>)</div><div class="line">{</div><div class="line"><span class="built_in">printf</span>(“Debugger Detected!\n”);</div><div class="line">}</div><div class="line"><span class="keyword">else</span></div><div class="line">{</div><div class="line"><span class="built_in">printf</span>(“No Debugger!\n”);</div><div class="line">}</div><div class="line"><span class="comment">//ProcessDebugObjectHandle = 0x1e</span></div><div class="line">(*proc)(GetCurrentProcess(), ProcessDebugObjectHandle, &dwRet, <span class="keyword">sizeof</span>(dwRet), NULL);</div><div class="line"><span class="keyword">if</span> (dwRet != <span class="number">0</span>)</div><div class="line">{</div><div class="line"><span class="built_in">printf</span>(“Debugger Detected!\n”);</div><div class="line">}</div><div class="line"><span class="keyword">else</span></div><div class="line">{</div><div class="line"><span class="built_in">printf</span>(“No Debugger!\n”);</div><div class="line">}</div><div class="line"><span class="comment">//ProcessDebugFlags = 0x1f</span></div><div class="line">(*proc)(GetCurrentProcess(), ProcessDebugFlags, &dwRet, <span class="keyword">sizeof</span>(dwRet), NULL);</div><div class="line"><span class="keyword">if</span> (dwRet == <span class="number">0</span>)</div><div class="line">{</div><div class="line"><span class="built_in">printf</span>(“Debugger Detected!=%d\n”, dwRet);</div><div class="line">}</div><div class="line"><span class="keyword">else</span></div><div class="line">{</div><div class="line"><span class="built_in">printf</span>(“No Debugger!\n”);</div><div class="line">}</div></pre></td></tr></table></figure>
+
+<h2 id="3-_NtQueryObject">3. <strong>NtQueryObject</strong></h2>
+<p>当调试器调试一个进程时，会创建一个调试类型的内核对象，检测系统中是否有调试对象即可判断是否有进程正在被调试。<br>获取内核对象信息链表，遍历链表中对象类型，如果有DebugObject类型对象则说明有程序正在被调试。</p>
+<h2 id="4-_ZwSetInformationThread">4. <strong>ZwSetInformationThread</strong></h2>
+<p>隐藏线程，使调试器无法接收调试事件。<br>第二个参数是个枚举类型的，这个域可以用来反调试ThreadHideFromDebugger：0×11<br>代码示例：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">int</span> main()</div><div class="line">{</div><div class="line">MYZWSETINFOMATIONTHREAD proc = NULL;</div><div class="line">proc = (MYZWSETINFOMATIONTHREAD)GetProcAddress(GetModuleHandle(“ntdll.dll”), “ZwSetInformationThread”);</div><div class="line">proc(GetCurrentThread(), ThreadHideFromDebugger, NULL, <span class="number">0</span>);</div><div class="line"><span class="built_in">printf</span>(“done\n”);</div><div class="line">system(“pause”);</div><div class="line"><span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">}</div></pre></td></tr></table></figure>
+
+<h2 id="5-_DebugActiveProcessStop">5. <strong>DebugActiveProcessStop</strong></h2>
+<p>这个函数可以把调试器与被调试进程的调试关系解除，这样调试器也就接收不到被调试进程的调试事件了。</p>
+<h2 id="6-_FindWindow">6. <strong>FindWindow</strong></h2>
+<p>通过这个函数获取调试器窗口的句柄，如果调试器窗口存在就会返回一个非零的值。</p>
+<h2 id="7-_TLS回调">7. <strong>TLS回调</strong></h2>
+<p>Tls回调函数会优先于EP代码执行，所以可以在函数中写入检测代码，在进程还没有开始运行之前就可以知道是否正在被调试。TLS其实不算反调试技术，只有在结合了其他反调试技术才会有反调试的效果。<br>代码示例:</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="preprocessor">#include </span></div><div class="line"><span class="preprocessor">#include</span></div><div class="line"><span class="keyword">void</span> NTAPI Tls_Callback(PVOID h, DWORD dwReason, PVOID pv)</div><div class="line">{</div><div class="line"><span class="keyword">if</span>( DLL_PROCESS_ATTACH == dwReason )</div><div class="line">{</div><div class="line"><span class="keyword">if</span> (IsDebuggerPresent())</div><div class="line">{</div><div class="line"><span class="built_in">printf</span>(“Debugger Detected!\n”);</div><div class="line">}</div><div class="line">}</div><div class="line">}</div><div class="line"><span class="preprocessor">#<span class="keyword">pragma</span> comment(linker, “/INCLUDE:__tls_used”)</span></div><div class="line"><span class="preprocessor">#<span class="keyword">pragma</span> data_seg(“.CRT$XLX”)</span></div><div class="line">PIMAGE_TLS_CALLBACK pTLS_CALLBACKs[] = { Tls_Callback, <span class="number">0</span> };</div><div class="line"><span class="preprocessor">#<span class="keyword">pragma</span> data_seg()</span></div><div class="line"><span class="keyword">int</span> main()</div><div class="line">{</div><div class="line"><span class="built_in">printf</span>(“tls callback anti-debug————\n\n”);</div><div class="line">system(“pause”);</div><div class="line"><span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">}</div></pre></td></tr></table></figure>
+
+<h2 id="8-_SEH">8. <strong>SEH</strong></h2>
+<p>1）<br>a.安装seh处理函数<br>b.故意触发一个异常，跳转到刚注册的seh处理函数中<br>c.在seh处理函数中写入检测代码<br>2）<br>a.SetUnhandledExceptionFilter更改默认顶层异常处理函数<br>b.触发异常，跳转到更改过的顶层异常处理函数中<br>c. 在seh处理函数中写入检测代码</p>
+<h2 id="9-_进程快照">9. <strong>进程快照</strong></h2>
+<p>CreateToolhelp32Snapshot、Process32First、Process32Next<br>这几个函数可以用来建立一个系统正在运行的进程快照，然后遍历进程快照查找是否有常见的调试器进程正在运行也可用作反调试。</p>
+<p>本文章转至[三叶草]（<a href="http://syclover.sinaapp.com/?cat=4）" target="_blank" rel="external">http://syclover.sinaapp.com/?cat=4）</a></p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+  
+
+  <nav id="pagination">
+  
+  
+  <div class="clearfix"></div>
+</nav>
 </div></div>
     <aside id="sidebar" class="alignright">
   <div class="search">

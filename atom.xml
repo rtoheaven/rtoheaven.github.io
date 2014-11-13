@@ -4,7 +4,7 @@
   <subtitle><![CDATA[Walk steps step by step]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://yoursite.com/"/>
-  <updated>2014-11-13T08:59:44.498Z</updated>
+  <updated>2014-11-13T09:04:17.350Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -19,7 +19,7 @@
     <link href="http://yoursite.com/2014/11/13/CTF%E5%B0%91%E8%AE%B8%E6%80%BB%E7%BB%93/"/>
     <id>http://yoursite.com/2014/11/13/CTF少许总结/</id>
     <published>2014-11-13T08:29:08.000Z</published>
-    <updated>2014-11-13T08:54:31.000Z</updated>
+    <updated>2014-11-13T09:02:51.000Z</updated>
     <content type="html"><![CDATA[<p>其实参加的比较少，很多也不懂，总结了一点点。<br>其实Crack类的题目，技巧很重要，阅读题目能力很关键，需要善于结合周边信息，善于用各种工具，善于多方位思考问题，找准关键地方，迅速定位。<br>下面举例说明。</p>
 <h2 id="Hctf_逆向第1题（善于使用工具）。">Hctf 逆向第1题（<strong>善于使用工具</strong>）。</h2>
 <p>107.189.158.112/d55757a7ccf958399789e18e1d8199de/babyCrack.zip<br>这个题目如果直接去调试，还是比较麻烦的，因为没有提示字符串，函数也不明确，但是如果用PEID先查壳，就能快速知道是,NET程序，<br>就可以用ILSpy或者.net reflector工具反编译出源码，<br><img src="/img/4101483FF0DB41C38DF5B24A13EA8596.png" alt=""><br>看到点击button函数，就可以看到flag：hctf{bAByCtsvlmE!}。</p>
@@ -31,12 +31,12 @@
 <p><img src="/img/A32F0A1097F0422386C9285B92FF4796.png" alt=""><br>这样，就可以确定flag.<br>主要是没有经验，也没有敏锐的观察力。唉，伤不起。</p>
 <h2 id="hctf_apk的第2题，">hctf apk的第2题，</h2>
 <p>该题也不是很难，关键信息也很容易定位，更改2个跳转就可以输出flag,尼玛，输出的时候是日文，打印出来各种提交，各种不通过。最后也没有解决，就不附图了。<br>关键是现在都还没有解决，没有看到writeup啊。</p>
-<p>hctf Linux下的一个题（<strong>善于使用脚本语言</strong>）。<br>该elf文件是一个64的文件，导入ida中，很快就可以看到check函数，或者字符串You Win,Sorry等，</p>
+<h2 id="hctf_Linux下的一个题（善于使用脚本语言）。">hctf Linux下的一个题（<strong>善于使用脚本语言</strong>）。</h2>
+<p>该elf文件是一个64的文件，导入ida中，很快就可以看到check函数，或者字符串You Win,Sorry等，</p>
 <p><img src="/img/08300124B5444C8887C1C91D87EFA781.png" alt=""></p>
 <p>调理很清楚，后面分析出来算法（矩阵），不知道怎么倒推回去，唉，编程能力太差，很多知道东西都不知道怎么写。<br>后面同伴想到用malab解，但是手工输入，解出来还是有些问题。最后看到了别人写的writeup,<br>用python导入了numpy库，就很快解出来了。</p>
 <h2 id="还有就是第一次SSCTF的第四题（善于多方面思考，不要一根筋）">还有就是第一次SSCTF的第四题（<strong>善于多方面思考，不要一根筋</strong>）</h2>
-<p>题目是<br>”输入正确的密码，会释放出文件。key就在文件中。tips:第一层密码为6为纯数字，第二层密码也是6位。“</p>
-<p>该exe文件是加了一层壳（FSG2.0），但是这个壳很好脱，也可以带壳调试。</p>
+<p>题目是”输入正确的密码，会释放出文件。key就在文件中。tips:第一层密码为6为纯数字，第二层密码也是6位。“<br>该exe文件是加了一层壳（FSG2.0），但是这个壳很好脱，也可以带壳调试。</p>
 <p><img src="/img/926A8E6F896E473C82D0A5698C2D8497.png" alt=""></p>
 <p>在GetProcAddress或者函数后，就可以下GetDlgItemTextA、GetWindowTextA等断点，获取输入，后面调试一步步就很简单，就是文件的读取，创建等，很清晰的。<br>算法就是md5(md5(“HOWMPxxxxxx”)) == 09B2F924C20C5CA427EED2C5B98BEFBF，xxxxx代表输入，最后会调用strcmp比较，</p>
 <p><img src="/img/BFA9BCAEE6FD4DFDBB0B3FAD0739D30C.png" alt=""></p>
