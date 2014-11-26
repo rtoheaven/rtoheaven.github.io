@@ -1,0 +1,330 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>vim�༭��ʹ�� | rtoheaven&#39;s blog</title>
+  <meta name="author" content="rtoheaven">
+  
+  <meta name="description" content="Walk steps step by step">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="vim�༭��ʹ��"/>
+  <meta property="og:site_name" content="rtoheaven&#39;s blog"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.png" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="rtoheaven&#39;s blog" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">rtoheaven&#39;s blog</a></h1>
+  <h2><a href="/">Walk steps step by step</a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+      <li><a href="/about">About</a></li>
+    
+	<li> <a href="/atom.xml">RSS</a> </li>
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div></header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-11-26T06:44:24.000Z"><a href="/2014/11/26/Vim编辑器使用/">11月 26 2014</a></time>
+      
+      
+  
+    <h1 class="title">vim�༭��ʹ��</h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h2 id="����">����</h2>
+<p>VI �༭����Linux��Unix�����������ı��༭�󣬹������ַ�ģʽ�¡����ڲ���Ҫͼ�ν��棬ʹ������Ч�ʺܸߵ��ı��༭�󣬵��Ǻܶ���ѧ�߶������༭�󶼲���ð����Ҳһ����</p>
+<h3 id="1��VIM��������">1��VIM��������</h3>
+<p><strong>һ��vim��3��ģʽ����</strong></p>
+<p>VIM����3�ֹ���ģʽ���ֱ�������ģʽ������ģʽ�͵���ģʽ��<br>����ģʽ������vim����������vimĬ�Ͼ��ǽ�������ģʽ����ʱ���м����ǹ��ܼ���<br>����ģʽ������ģʽ�°��¡�i�����Ϳ��Խ�������ģʽ����ʱ�������±�һ���༭�ı��ˡ�<br>����ģʽ��������ģʽ�����롰:����������ģʽ���������Ա����ļ����˳�vim�Լ����û���ִ�б��������ȡ�</p>
+<p>vim�𶯽�������ģʽ<br>���ڲ���ģʽ������ģʽʱֻ��Ҫ����ESC���˳������ɽ�������ģʽ<br>����ģʽ�а���i�������룩����a�������ӣ��������Խ�������ģʽ<br>����ģʽ�а���:����������ģʽ<br>����ģʽ�����롰wq���س��󱣴沢�˳�vim<br><a id="more"></a><br><strong>��������vim</strong></p>
+<p>1.ʹ��vim��������vim����<br>vim�Ǵ���vim������ test.txt�����򿪻����½��ļ����ļ�����<br>����linux�նˣ�������������<br>$ vim test.txt<br>ֱ��ʹ��vimҲ���Դ���vim�༭�󣬵��ǲ��������κ��ļ���<br>$ vim<br>��������ģʽ������:e test.txt ͬ�����Դ���test.txt�ļ���<br>2.�α��ƶ�</p>
+<p>3.�ƶ�vim�༭�����α�<br>�ڽ���vim�󣬰��¡�i������������ģʽ���ڸ�ģʽ�������������ı���Ϣ<br>����������������Ϣ<br>12345678<br>abcdefghijk<br>testtesttest<br>��esc��������ģʽ���ڸ�ģʽ��ʹ�÷���������hjkl�������ƶ��αꡣ<br>h������<br>l��СдL���� ��<br>j ����<br>k�� ��<br>w���ƶ�����һ�򵥴�<br>b���ƶ�����һ�򵥴�<br>�볢����������ģʽ��ʹ����ĸ�����ı����ƶ��α�<br>ѡ���ض����ı�λ�ú����Խ����༭ģʽ��ʼ�༭</p>
+<p><strong>���������༭ģʽ</strong></p>
+<p>1.ʹ�����������༭ģʽ</p>
+<p>������ģʽ������������ĸ�����༭ģʽ�����ı��༭<br>i   �ڵ�ǰ���괦���б༭<br>a   �ڹ����������༭<br>o   �ڵ�ǰ�к�����һ������<br>O   �ڵ�ǰ��ǰ����һ������<br>cw   �滻�ӹ�������λ�ú���һ�򵥴ʽ�β���ַ�<br>�볢�Բ�ͬ�Ĵ�����ģʽ�����༭ģʽ�ķ�������Ҫ����ESC�����Դӱ༭ģʽ�˻ص�����ģʽ</p>
+<p><strong>�ġ������ĵ�</strong></p>
+<p>1.����ģʽ�±����ĵ�</p>
+<p>������ģʽ���롰:����������ģʽ������w�س��������ĵ�</p>
+<p><strong>�塢�˳�vim</strong></p>
+<p>1.����ģʽ���˳�vim</p>
+<p>������ģʽ���롰:����������ģʽ������wq�س������沢�˳��༭<br>Ҳ����ʹ���������˳��������ǰ��”:”��ʾ���ڵ���ģʽ��<br>:q! ǿ���˳򣬲�����<br>:q �˳�<br>:wq! ǿ�Ʊ��沢�˳�<br>:saveas <path to="" file=""> ����Ϊ <path to="" file=""><br>:x �� :wq ���沢�˳�<br>2.����ģʽ���˳�vim</p>
+<p>����ģʽ�����롰ZZ�����ɱ����˳�vim</p>
+<p><strong>����ɾ���ı�</strong></p>
+<p>1.����ģʽ��ɾ��vim�ı���Ϣ</p>
+<p>��������ģʽ��ʹ���������������ı�����ɾ����<br>x ɾ���α����ڵ��ַ�<br>X ɾ���α�֮ǰ���ַ�<br>��del������ɾ����ǰ�ַ�<br>dd ɾ������<br>dwɾ��һ��word�����������ģ�<br>dGɾ�����ĵ���β��<br>d1G ɾ���ĵ��ײ�<br>d$ɾ������β</p>
+<h3 id="2��Vim�ĵ��༭">2��Vim�ĵ��༭</h3>
+<p><strong>һ��vim�ظ�����</strong></p>
+<p>1.�ظ�ִ���ϴ�����</p>
+<p>��������ģʽ . (С����) �����ظ���һ�ε�����<br>���������ļ�������Ŀ¼<br>$ cp /etc/protocols ./<br>�����ļ��ļ����б༭<br>$ vim protocols<br>����ģʽ������x��ɾ����һ���ַ�������.(С����)���ٴ�ɾ��һ���ַ�<br>2.����ִ����ͬ������</p>
+<p>��������ģʽ���롰N�� �ظ�ĳ������N��<br>�����ļ��ļ����б༭<br>$ vim protocols<br>����ģʽ������10x��ɾ��10�������ַ�<br>����ģʽ������3dd������ɾ��3���ı�</p>
+<p><strong>������������ת</strong></p>
+<p>1.����������ת</p>
+<p>����ģʽ�£��������������ù������ٵ�ת��ָ��λ��<br>NG���� N �� �������е�G�Ǵ�д�ģ�<br>gg����һ��<br>G������һ��</p>
+<p>2.��ϰNG����</p>
+<p>N��һ�����֣�G������д<br>�����ļ��ļ����б༭<br>$ vim protocols<br>��������ģʽ������10G�����꽫����ת����10��</p>
+<p>3.gg����</p>
+<p>gg���������ת����һ�У���1G��ͬ<br>N��һ�����֣�G������д<br>�����ļ��ļ����б༭<br>$ vim protocols<br>��������ģʽ������10G�����꽫����ת����10��<br>��������ģʽ������gg�����꽫����ת����1��</p>
+<p>4.G����</p>
+<p>G���������ת������һ��<br>$ vim protocols<br>��������ģʽ������G�����꽫����ת������һ��</p>
+<p>5.�������ƶ�����</p>
+<p>����ģʽ��ʹ����������յ���Ϊ��λ������ת<br>w   ����һ�򵥴ʵĿ�ͷ��<br>e   ����һ�򵥴ʵĽ�β��<br>�����ļ���������ģʽ����ϰ���յ��ʽ�����ת<br>$ vim protocols</p>
+<p><strong>��������ճ���ͼ���</strong></p>
+<p>1.���Ƽ�ճ���ı�</p>
+<p>����ģʽ��ʹ��y ����<br>����ģʽ��yy�����α����ڵ����У�3yy��ʾ����3�У�<br>����ģʽ�У�y^ ���������ף���y0�������������ڴ��ַ���<br>��������ģʽ��y$ ��������β���������ڴ��ַ���<br>��������ģʽ��yw ����һ��word��<br>��������ģʽ��y2w ���������֡�<br>��������ģʽ��yG �������ı�������<br>��������ģʽ��y1G �������ı���ʼλ�á�<br>����ģʽ��ʹ��p ճ��<br>��������ģʽ��p Сдp �����������������£�<br>��������ģʽ��P ��дP ������������ǰ���ϣ�</p>
+<p>2.���м�ճ���ı�</p>
+<p>����ģʽ��ʹ��d ����<br>����ģʽ��dd�����α����ڵ����У�3dd��ʾ����3�У�<br>����ģʽ�У�d^��������ǰ�п�ʼλ�ã���d0�������������ڴ��ַ���<br>��������ģʽ��d$ ��������β���������ڴ��ַ���<br>��������ģʽ��dw ����һ��word��<br>��������ģʽ��d2w ���������֡�<br>��������ģʽ��dG �������ı�������<br>��������ģʽ��d1G �������ı���ʼλ�á�<br>����ģʽ��ʹ��p ճ��<br>��������ģʽ��p Сдp �����������������£�<br>��������ģʽ��P ��дP ������������ǰ���ϣ�</p>
+<p><strong>�ġ��ڵ�ǰ�����ƶ�����</strong></p>
+<p>1.��ǰ�����ƶ�������������</p>
+<p>0 ����ͷ<br>$ ����β<br>fa ����һ��Ϊa���ַ�������Ҳ����fs����һ��Ϊs���ַ���<br>t, ������ǰ�ĵ�һ���ַ������ſ��Ա��������ַ���<br>3fa �ڵ�ǰ�в��ҵ��������ֵ�a��<br>F �� T �� f �� t һ����ֻ�������෴������</p>
+<p>2.�����ƶ�������ϰ</p>
+<p>������ϰ�ı�������Ŀ¼<br>$ cp /etc/protocols ./<br>�����ļ��ļ����б༭<br>$ vim protocols<br>����ģʽ������11G����ת����11��<br>����ģʽ������$��ת����β������0�ص���ͷ<br>����ģʽ������fa ��ת����һ��a�ַ���<br>����ģʽ������ta��ת��a�ַ�ǰһ��λ��<br>����ģʽ������3fa��ת�����������ֵ�a�ַ���<br>����ģʽ������3Fa��ת��ǰ��������a�ַ�</p>
+<h3 id="3��Vim�滻����">3��Vim�滻����</h3>
+<p><strong>һ���ַ���ȡ������ԭ</strong></p>
+<p>1.ȡ���ͻ�ԭ��������</p>
+<p>����ģʽ������r�����������µ��ַ������ַ�����ȡ����ǰ���ַ�<br>����ģʽ������Rȡ���ַ����������ַ���ֱ������EscΪֹ��<br>����ģʽ������ccȡ�������ַ�������дS ���ɡ�<br>����ģʽ������cw �滻һ��Ӣ����(word)�����Ĳ����á�<br>����ģʽ������Shift+~����ת�α������ַ��Ĵ�Сд<br>����ģʽ������C ȡ������β�����α����ڴ��Ժ����ֶ��ᱻ�滻<br>����ģʽ������u ȡ����һ�εĲ���</p>
+<p>2.ȡ���ͻ�ԭ������ϰ</p>
+<p>������ϰ�ı�������Ŀ¼<br>$ cp /etc/protocols ./<br>�����ļ��ļ����б༭<br>$ vim protocols<br>����ģʽ������11G����ת��11��<br>����fa��ת����һ��a�ַ�<br>����ģʽ������r����������b��a�ַ���b�ַ�ȡ��<br>����ģʽ������Rȡ���ַ����������ַ����������갴ESC�ص�����ģʽ<br>����ģʽ������ccȡ�������ַ����������ַ����������갴ESC�ص�����ģʽ<br>����ģʽ������cw �滻һ��Ӣ����(word)�������갴ESC�ص�����ģʽ<br>����ģʽ������Shift+~����ת�α������ַ��Ĵ�Сд<br>����ģʽ������C ȡ������β�����α����ڴ��Ժ����ֶ��ᱻ�滻�������갴ESC�ص�����ģʽ<br>����ģʽ������u ȡ����һ�εĲ���</p>
+<p><strong>�������ֵļ�������</strong></p>
+<p>1.ʹ�����������ֽ��м򵥵�����</p>
+<p>�����ļ����б༭<br>$ vim protocols<br>����ģʽ������15G����ת��15��<br>����ģʽ������&gt;&gt; ���н���������<br>����ģʽ������&lt;&lt; ������������<br>����ģʽ������’:’��������ģʽ�¶�shiftwidthֵ�������ÿ��Կ��������ͻ��˵��ַ���</p>
+<p>2.shiftwidth����</p>
+<p>shiftwidth������ָ��һ��&gt;&gt;�������������������Լ�д��sw��<br>����ģʽ������’:’��������ģʽ�¶�shiftwidthֵ�������ÿ��Կ��������ͻ��˵��ַ���<br>��ȡĿǰ���趨ֵ<br>:set shiftwidth?<br>��������Ϊ10���ַ�<br>:set shiftwidth=10<br>����ESC�ص�����ģʽ���ٴγ���&gt;&gt;���������Ƿ��仯</p>
+<p>3.�����ı�λ��</p>
+<p>����ģʽ��ce(center)����ʹ�������ݾ���<br>:ce<br>����ģʽ��ri(right)����ʹ�����ı�����<br>:ri<br>����ģʽ��le(left)����ʹ�������ݿ���<br>:le</p>
+<p><strong>��������</strong></p>
+<p>1.���ٲ���</p>
+<p>����ģʽ������/Ȼ��������Ҫ���ҵ��ַ��� ���س����ͻ����в��ҡ�<br>����/������ͬ��ֻ�����������϶�/�����²��ҡ�<br>��������֮��������n��N���Լ�������<br>n��ʾ�������ң�N��������</p>
+<p>2.���ٲ�����ϰ</p>
+<p>�����ļ��ļ����б༭<br>$ vim protocols<br>����ģʽ������/icmp����icmp�ַ���<br>����ģʽ������n������һ��icmp<br>����ģʽ�����룿tcp���ϲ���tcp�ַ���<br>����ģʽ������N������һ�����ֵ�tcp</p>
+<p>3.�߼�����</p>
+<p>����ģʽ������<em>Ѱ���α����ڴ��ĵ���<br>����ģʽ������#ͬ�ϣ��� </em> ����ǰ���£��ң�#�����������ϣ���<br>����ģʽ������g<em>ͬ</em> �������ַ��ϸõ��ʼ���<br>����ģʽ������g#ͬ# �������ַ��ϸõ��ʼ���<br>���ϲ���n, N �ļ�������������Ȼ������</p>
+<h3 id="4���߼���������">4���߼���������</h3>
+<p><strong>һ���ĵ�����</strong></p>
+<p>1.���������ĵ�</p>
+<p>$ vim -x file1<br>������������<br>ȷ������<br>��������һ�δ���ʱ��vim�ͻ�Ҫ������������</p>
+<p><strong>������vimִ���ⲿ����</strong></p>
+<p>1.ִ���ⲿ����</p>
+<p>�ڵ���ģʽ�����룡����ִ���ⲿ��shell����<br>:!ls ������ʾ��ǰĿ¼������<br>:!rm FILENAME ����ɾ����Ϊ FILENAME ���ļ�<br>:w FILENAME �ɽ���ǰ VIM �����ڱ༭���ļ�����Ϊ FILENAME �ļ�</p>
+<p><strong>�������ļ��༭</strong></p>
+<p>1.ʹ��vim�༭�����ļ�</p>
+<p>�༭�����ļ���������ʽ��һ�����ڽ���vimǰʹ�õĲ������Ƕ����ļ�����һ�־��ǽ���vim���ٱ༭�������ļ���<br>ͬʱ�����������ļ����༭<br>$ vim 1.txt 2.txt<br>Ĭ�Ͻ���1.txt�ļ��ı༭����<br>����ģʽ������:n�༭2.txt�ļ������Լ�!��:n!ǿ���л���֮ǰһ���ļ�������û�б��棬�����л�����һ���ļ�<br>����ģʽ������:N�༭1.txt�ļ������Լ�!��:N!ǿ���л���֮ǰ�ļ��ڵ�����û�б��棬�������л�����һ���ļ�</p>
+<p>2.����vim���������ļ�</p>
+<p>����ģʽ������:e 3.txt �������ļ�3.txt<br>����ģʽ������:e# �ص�ǰһ���ļ�<br>����ģʽ������:ls�����г���ǰ�༭�����ĵ�<br>����ģʽ������:b 2.txt�����߱��ţ�����ֱ�ӽ����ļ�2.txt�༭<br>����ģʽ������:bd 2.txt�����߱��ţ�����ɾ����ǰ�༭�����б��е��ļ���Ŀ<br>����ģʽ������:e! 4.txt���´����ļ�4.txt���������ڱ༭���ļ�<br>����ģʽ������:f ��ʾ���ڱ༭���ļ���<br>����ģʽ������:f new.txt���ı����ڱ༭���ļ�����Ϊnew.txt</p>
+<p>3.�ָ��ļ�</p>
+<p>������Ϊ�ϵ���ԭ�������ĵ�û�б��棬���Բ��ûָ���ʽ��vim -r �����ĵ���������:ewcover 1.txt���ظ�<br>$ vim -r 1.txt</p>
+<p><strong>�ġ���ͼģʽ</strong></p>
+<p>1.��ͼģʽ��������</p>
+<p>������ģʽ������v��Сдv���������ַ�ѡ��ģʽ���Ϳ����ƶ����꣬�����߹��ĵط��ͻ�ѡȡ���ٴΰ���v�����ͻ�ȡ��ѡȡ��<br>������ģʽ������V ����дV����������ѡ��ģʽ������V֮���ͻ�������ѡȡ�������������ƶ�����ѡ�������У�ͬ�����ٰ�һ��V�Ϳ���ȡ��ѡȡ��<br>������ģʽ������ Ctrl+v��СдV������������ѡ��ģʽ�����Խ��о�������ѡ�����ٰ�һ��Ctrl+vȡ��ѡȡ��<br>������ģʽ������dɾ��ѡȡ��������<br>������ģʽ������y����ѡȡ��������</p>
+<p>2.��ͼģʽ������ϰ</p>
+<p>������ϰ�ļ�����ǰĿ¼<br>$ cp /etc/protocols ./<br>������ϰ�ļ�<br>$ vim protocols<br>������ģʽ��20G��ת��20�У�����v��Сдv���������ַ�ѡ��ģʽ���ƶ����꣬ѡȡ1�򵥴ʣ�����y����ѡȡ���ݣ�����p�ڵ�ǰλ��ճ��ѡȡ����<br>������ģʽ������V ����дV����������ѡ��ģʽ���ƶ���������ѡ��3�У�����dɾ��ѡȡ���ݡ�<br>������ģʽ������ Ctrl+v��Сдv�����ƶ��������о�������ѡ��������dɾ��ѡȡ���ݡ�<br>������ģʽ������dɾ��ѡȡ��������<br>������ģʽ������y����ѡȡ��������</p>
+<p><strong>�塢�Ӵ�����</strong></p>
+<p>1.�Ӵ���������</p>
+<p>vim������һ���������򿪶��򴰿ڽ��б༭����Щ�༭���ڳ�Ϊvim���Ӵ�<br>�򿪷�������ʹ���ڵ���ģʽ������:new ����һ���µ�vim�Ӵ�������ģʽ������Ctrl+wҲ����,����Ctrl+w��chrome�»���chrome������������ͻ�Ӷ��ر�chrome�ı�ǩҳ��<br>����ģʽ������:sp 1.txt �����µĺ����Ӵ����༭1.txt<br>����ģʽ������:vsp 2.txt �����µ������Ӵ����༭1.txt<br>ע�⣺����������ڻ�����IE9+��������ʹ�ã�chrome���п��ݼ���ͻ<br>����ģʽ��Ctrl-w s ������һ���µ��Ӵ�����ԭ�����ĵ����������Ӵ���<br>����ģʽ��Ctrl-w f ����һ���µ��Ӵ������α��༭֮���ĵ��ʾ������Ӵ�������<br>����ģʽ��Ctrl-w q �� :q �����ָ��������Ӵ������������Ӵ�����������Ҫʹ��ǿ�Ʒ�����:q!<br>����ģʽ��Ctrl-w o ����һ���Ӵ���������֮ǰ�������Ӵ�<br>����ģʽ��Ctrl-w j �������Ӵ�<br>����ģʽ��Ctrl-w k �������Ӵ�</p>
+<p>2.�Ӵ�������ϰ</p>
+<p>$ vim 1.txt<br>����ģʽ������:new ����һ���µ�vim�Ӵ�<br>����ģʽ������:sp 2.txt �����µĺ����Ӵ����༭2.txt<br>����ģʽ������:vsp 3.txt �����µĺ����Ӵ����༭3.txt<br>����ʹ�÷�chrome����������ʹ��Ctrl+w�����Ӵ�������ת<br>�ֱ��ڲ�ͬ�Ӵ��ĵ���ģʽ������:q!�˳����Ӵ��༭</p>
+<p><strong>��������ϵͳ</strong></p>
+<p>1.vim�еĲ鿴����</p>
+<p>����ģʽ�°�F1����vim�Լ�Ԥ���İ����ĵ�<br>����ģʽ������:h shiftwidth ������Ϊshiftwidth�İ����ļ�<br>����ģʽ������:ver ��ʾ�汾������</p>
+<p><strong>�ߡ������趨</strong></p>
+<p>1.vim�Ĺ����趨</p>
+<p>�����ڱ༭�ļ���ʱ�����й����趨��������ģʽ������:set nu����ʾ���������趨ֵ�˳�vim�󲻻ᱣ�档Ҫ���ñ���������Ҫ�޸�vim�����ļ���<br>vim�������ļ�~/.vimrc�����Դ����ļ������޸ģ���������С�Ĳ�ҪӰ��vim����ʹ��</p>
+<p>2.��ȡĿǰ���趨</p>
+<p>����ģʽ������:set����:se��ʾ�����޸Ĺ�������<br>����ģʽ������:set all ��ʾ���е��趨ֵ<br>����ģʽ������:set option? ��ʾoption���趨ֵ<br>����ģʽ������:set nooption ȡ�������趨ֵ</p>
+<p>3.set���ܵ�˵��</p>
+<p>����ģʽ������:set autoindent(ai) �����Զ�����<br>����ģʽ������:set autowrite(aw) �����Զ��浵��Ĭ��δ����<br>����ģʽ������:set background=dark��light�����ñ�������<br>����ģʽ������:set backup(bk) �����Զ����ݣ�Ĭ��δ����<br>����ģʽ������: set cindent(cin) ����C���Է�������</p>
+
+      
+    </div>
+    <footer>
+      
+        
+  
+  <div class="categories">
+    <a href="/categories/����ʹ��/">����ʹ��</a>
+  </div>
+
+        
+        
+  <div class="addthis addthis_toolbox addthis_default_style">
+    
+      <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+    
+    
+      <a class="addthis_button_tweet"></a>
+    
+    
+      <a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+    
+    
+      <a class="addthis_button_pinterest_pinit" pi:pinit:layout="horizontal"></a>
+    
+    <a class="addthis_counter addthis_pill_style"></a>
+  </div>
+  <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js"></script>
+
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+<nav id="pagination" >
+    
+    
+    <a href="/2014/11/13/CTF少许总结/" class="alignright next" >下一页</a>
+    
+    <div class="clearfix"></div>
+</nav>
+<section id="comment">
+	<div class="ds-thread" data-thread-key="请将此处替换成文章在你的站点中的ID" data-title="请替换成文章的标题" data-url="请替换成文章的网址"></div>
+<!-- 多说评论框 end -->
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"rtoheaven"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+</section>
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="搜索">
+    <input type="hidden" name="q" value="site:yoursite.com">
+  </form>
+</div>
+
+  
+<div class="widget tag">
+  <h3 class="title">分类</h3>
+  <ul class="entry">
+  
+    <li><a href="/categories/CTF/">CTF</a><small>2</small></li>
+  
+    <li><a href="/categories/基础编程/">基础编程</a><small>1</small></li>
+  
+    <li><a href="/categories/安全技术/">安全技术</a><small>1</small></li>
+  
+    <li><a href="/categories/工具使用/">工具使用</a><small>0</small></li>
+  
+    <li><a href="/categories/����ʹ��/">����ʹ��</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">最新文章</h3>
+  <ul class="entry">
+    
+      <li>
+        <a href="/2014/11/26/Vim编辑器使用/">vim�༭��ʹ��</a>
+      </li>
+    
+      <li>
+        <a href="/2014/11/13/CTF少许总结/">CTF逆向类少许总结</a>
+      </li>
+    
+      <li>
+        <a href="/2014/11/07/CTF简介/">CTF简介</a>
+      </li>
+    
+      <li>
+        <a href="/2014/11/05/C语言操作SQLITE3数据库/">C语言操作SQL</a>
+      </li>
+    
+      <li>
+        <a href="/2014/10/31/windows常见反调试/">windows常见反调试</a>
+      </li>
+    
+  </ul>
+</div>
+
+
+  
+
+  
+
+  
+
+  
+
+  <div class="widget tag">
+<h3 class="title">Friend Site Link </h3>
+<ul class="entry">
+<li><a href="http://www.sec-wiki.com/" title="sec-wiki">Sec-wiki</a></li>
+<li><a href="http://www.devilstep.com/" title="devilstep">devilstep</a></li>
+<li><a href="http://anhkgg.gitcafe.com/" title="anhkgg">anhkgg</a></li> 
+<li><a href="http://crazysprite.gitcafe.com/" title="crazysprite">crazysprite</a></li>
+<li><a href="http://coolsmurfs.github.io/" title="coolsmurfs">coolsmurfs</a></li>
+<li><a href="https://github.com/rtoheaven/rtoheaven.github.io.git" title="rtoheaven's Blog">rtoheaven
+github</a></li>
+</ul>
+</div>
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2014 rtoheaven
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>
