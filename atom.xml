@@ -4,7 +4,7 @@
   <subtitle><![CDATA[Walk steps step by step]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://yoursite.com/"/>
-  <updated>2015-01-13T14:07:23.824Z</updated>
+  <updated>2015-01-13T14:10:26.923Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -19,11 +19,11 @@
     <link href="http://yoursite.com/2015/01/13/%E5%AE%8F%E7%97%85%E6%AF%92%EF%BC%88exe%E6%89%A7%E8%A1%8C%EF%BC%89/"/>
     <id>http://yoursite.com/2015/01/13/宏病毒（exe执行）/</id>
     <published>2015-01-13T12:51:49.000Z</published>
-    <updated>2015-01-13T14:06:46.000Z</updated>
+    <updated>2015-01-13T14:10:19.000Z</updated>
     <content type="html"><![CDATA[<h2 id="宏病毒概念：">宏病毒概念：</h2>
 <p>宏病毒是一种寄存在文档或模板的宏中的计算机病毒。一旦打开这样的文档，其中的宏就会被执行，于是宏病毒就会被激活，转移到计算机上，并驻留在Normal模板上。</p>
 <h2 id="制作流程：">制作流程：</h2>
-<p>这里用的方法主要是把PE文件接到doc文件后面，然后通过API函数，定位到PE文件位置，最后释放出来并运行，下面详细说明。</p>
+<p>这里用的方法主要是把PE文件接到doc文件后面，然后通过API函数，定位到PE文件位置，最后释放出来并运行，下面详细说明。<br><a id="more"></a></p>
 <h3 id="一、把PE文件嵌入doc文件中">一、把PE文件嵌入doc文件中</h3>
 <p>这个实现起来简单，把要接的exe放到和这个doc文件同一个目录下.运行doc命令:<br>copy /b xxxx.doc + xxxxx.exe newdoc.doc<br>这个跟图片隐写技术类似的。</p>
 <h3 id="二、创建宏代码，实验功能">二、创建宏代码，实验功能</h3>
@@ -38,7 +38,8 @@
     <![CDATA[<h2 id="宏病毒概念：">宏病毒概念：</h2>
 <p>宏病毒是一种寄存在文档或模板的宏中的计算机病毒。一旦打开这样的文档，其中的宏就会被执行，于是宏病毒就会被激活，转移到计算机上，并驻留在Normal模板上。</p>
 <h2 id="制作流程：">制作流程：</h2>
-<]]>
+<p>这里用的方法主要是把PE文件接到doc文件后面，然后通过API函数，定位到PE文件位置，最后释放出来并运行，下面详细说明。<br>]]>
+    
     </summary>
     
       <category term="安全技术" scheme="http://yoursite.com/categories/%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/"/>
